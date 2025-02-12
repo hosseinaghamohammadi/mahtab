@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <title>صفحهٔ اصلی</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+        body{
+            margin: 0;
+        }
+        #page{
+            width: 100%;
+            background-color: white;
+            font-family: Vazirmatn;
+            min-width: 700px;
+        }
+        #page-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #navbar{
+            width: 100%;
+            height: 40px;
+            background-color: white;
+            font-weight: 500;
+        }
+        #navbar-wrap{
+            width: 92%;
+            height: inherit;
+            /*background-color: #F2F2F2;*/
+            box-shadow: 0px 3px 4px rgb(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: row-reverse;
+            color: #404040;
+            padding: 10px 4% 10px 4%;
+            align-items: center;
+        }
+        #orgname{
+            width: 12%;
+            display: flex;
+            flex-direction: row;
+        }
+        #orgname-wrap{
+            width: 70%;
+            font-size: max(2.7vw, 16px);
+            margin: auto;
+        }
+        #navitems{
+            width: 90%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        #navitems-wrap{
+            width: 35%;
+            display: flex;
+            flex-direction: row-reverse;
+            font-size: max(1.3vw, 12px);
+        }
+        .nav-item{
+            margin: auto;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+        #content{
+            width: 100%;
+            min-height: 92vh;
+            margin-top: 20px;
+            background-image: linear-gradient(45deg, rgba(0, 159, 183, 0.3), rgba(0, 159, 183, 0.05));
+        }
+        #content-wrap{
+            width: 100%;
+            position: relative;
+            padding: 55px 0% 5% 0%;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+        }
+        #timeline{
+            width: 25%;
+            background-color: #009FB7;
+            height: 100%;
+            border-radius: 5px;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            min-width: 200px;
+            margin-left: 10%;
+        }
+        #timeline-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /*height: 100%;*/
+        }
+        #status-title{
+            display: block;
+            margin: auto;
+            width: 90%;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.7vw;
+        }
+        #journey-status{
+            width: 90%;
+            margin: 5% auto 0px auto;
+        }
+        #journey-status-wrap{
+            width: 100%;
+        }
+        .station-row{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+        .station{
+            background-color: white;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            width: 15%;
+            margin: 0px auto 15px auto;
+            display: flex;
+            align-items: center;
+        }
+        .station span{
+            margin: auto;
+            font-size: max(1.4vw, 11px);
+            font-weight: 700;
+        }
+        #station-row-3{
+            width: 62.5%;
+            margin: auto;
+        }
+        #station-9{
+            width: 24%;
+        }
+        #station-10{
+            width: 24%;
+        }
+        #details{
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            min-width: 400px;
+        }
+        #guidance-row{
+            width: 85%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1%;
+        }
+        .sign-row{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            margin-left: 0px;
+            margin-top: 3px;
+            font-size: max(1vw, 10px);
+        }
+        #details-wrap{
+            width: 80%;
+            margin: auto;
+            border: 5px solid #009FB7;
+            padding-bottom: 2%;
+            border-radius: 5px;
+            font-weight: 600;
+            padding-right: 5%;
+            padding-left: 5%;
+            padding-top: 2%;
+            background-color: white;
+        }
+        #station1-dtl-row{
+            display: flex;
+            flex-direction: column;
+        }
+        .guidance{
+            width: 65px;
+            display: flex;
+            align-items: center;
+        }
+        #color-sign-negative{
+            display: block;
+            height: 20px;
+            aspect-ratio: 1;
+            background-color: #FFC914;
+            border-radius: 50%;
+            margin: 0px 5% 0px 0px;
+        }
+        #color-sign-positive{
+            display: block;
+            height: 20px;
+            aspect-ratio: 1;
+            background-color: limegreen;
+            border-radius: 50%;
+            margin: 0px 0px 0px 0px;
+        }
+        .station-status{
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+        ul li{
+            text-decoration: none;
+        }
+        #footer{
+            width: 100%;
+            background-color: #F2F2F2;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+        #footer-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            margin: auto;
+        }
+        #ft-items{
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+        }
+        #ft-items-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            margin: auto;
+        }
+        .ft-item{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+        .ft-item-wrap{
+            width: 100%;
+            margin: auto;
+            /*height: 100px;*/
+            background-color: #e5e87d;
+            text-align: center;
+        }
+
+        .nav-item-wrap a:visited{
+            text-decoration: none;
+            color: #404040;
+        }
+        .nav-item-wrap a{
+            text-decoration: none;
+        }
+        #audio-control{
+            position: absolute;
+            width: 8%;
+            min-width: 50px;
+            /*height: 30px;*/
+            aspect-ratio: 3.5;
+            background-color: white;
+            border-radius: 3px;
+            border: 1.5px solid black;
+            top: 75px;
+            left: 30px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-size: 14px;
+            z-index: 10;
+        }
+        #audio-label{
+            width: 70%;
+            text-align: center;
+            font-size: max(1vw, 8px);
+            /*background-color: #555555;*/
+        }
+        #audio-icon{
+            width: 30%;
+            /*background-color: #00cac5;*/
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-align: center;
+        }
+        #audio-icon img{
+            width: 90%;
+            margin: auto;
+        }
+        #next-p-link{
+            width: 50%;
+            margin: auto;
+            border-radius: 2px;
+            border: 2px solid black;
+            font-size: max(1.4vw, 12px);
+            display: block;
+            margin-bottom: 2%;
+            /*background-color: #e5e87d;*/
+            text-decoration: none;
+            color: black;
+            text-align: center;
+        }
+        #next-a-link{
+            width: 50%;
+            margin: auto;
+            font-size: max(1.4vw, 12px);
+            border: 2px solid black;
+            border-radius: 2px;
+            display: block;
+            /*background-color: #c5e87d;*/
+            text-decoration: none;
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onclick="play_audio()">
+<div id="page">
+    <div id="page-wrap">
+        <div id="audio-control">
+            <span id="audio-label">موسیقی</span>
+            <span id="audio-icon" onclick="pause_audio()">
+                <img src="{% static 'images/sound-on.png'%}">
+            </span>
+        </div>
+        <div id="navbar">
+            <div id="navbar-wrap">
+                <div id="orgname" dir="rtl">
+                    <div id="orgname-wrap">
+                        مهتاب
+                    </div>
+                </div>
+                <div id="navitems">
+                    <div id="navitems-wrap">
+                        <div class="nav-item">
+                            <div class="nav-item-wrap">
+                                <a href="/homepage/">
+                                    سفر ماجراجویانه
+                                </a>
+                            </div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-item-wrap">
+<!--                                کلاس‌های آموزشی-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="content-wrap">
+                <div id="timeline">
+                    <div id="timeline-wrap">
+                        <span id="status-title">وضعیت‌های ایستگاه‌های شما</span>
+                        <div id="journey-status">
+                            <div id="journey-status-wrap">
+                                <div class="station-row">
+                                    <div id="station-1" class="station"><span>۱</span></div>
+                                    <div id="station-2" class="station"><span>۲</span></div>
+                                    <div id="station-3" class="station"><span>۳</span></div>
+                                    <div id="station-4" class="station"><span>۴</span></div>
+                                </div>
+                                <div class="station-row">
+                                    <div id="station-8" class="station"><span>۸</span></div>
+                                    <div id="station-7" class="station"><span>۷</span></div>
+                                    <div id="station-6" class="station"><span>۶</span></div>
+                                    <div id="station-5" class="station"><span>۵</span></div>
+                                </div>
+                                <div id="station-row-3" class="station-row">
+                                    <div id="station-9" class="station"><span>۹</span></div>
+                                    <div id="station-10" class="station"><span>۱۰</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <a id="next-p-link" href="/homepage/">
+                            <div>
+                                مسئله‌ی بعدی
+                            </div>
+                        </a>
+                        <a id="next-a-link" href="/homepage/">
+                            <div>
+                                فعالیت بعدی
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div id="details">
+                    <div id="guidance-row">
+                        <div class="sign-row">
+                            <span id="guidance-2" class="guidance">تکمیل‌نشده</span>
+                            <span id="color-sign-negative"></span>
+                        </div>
+                        <div class="sign-row">
+                            <span id="guidance-1" class="guidance">تکمیل‌شده</span>
+                            <span id="color-sign-positive"></span>
+                        </div>
+                    </div>
+                    <div id="details-wrap">
+<!--                        {{current_station}}-->
+<!--                        <div id="station1-dtl-row" class="station-dtl-row">-->
+<!--                            <h3 id="s1-title" class="station-title" dir="rtl" style="margin-bottom: 0%; margin-top: 2%">-->
+<!--                                ایستگاه nام-->
+<!--                            </h3>-->
+<!--                            <div id="s1-status" class="station-status">-->
+<!--                                <ul id="s1-ps" class="station-problems-list" dir="rtl" style="margin-bottom: 4%;">-->
+<!--                                    <li id="s1-p1" class="station-problem-item" style="list-style: none;">-->
+<!--                                        <div id="s1-p1-row" class="station-problem-item-row" style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span id="s1-p1-color-sign" class="status-color-sign" style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li id="s1-p2" class="station-problem-item" style="list-style: none">-->
+<!--                                        <div id="s1-p2-row" class="station-problem-item-row" style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span id="s1-p2-color-sign" class="status-color-sign" style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                                <ul dir="rtl">-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <hr style="width: 90%; ">-->
+<!--                        <div id="dtl-row-2">-->
+<!--                            <h3 id="station2-title" dir="rtl" style="margin-bottom: 2%; margin-top: 2%">ایستگاه nام</h3>-->
+<!--                            <div class="activities-status">-->
+<!--                                <ul dir="rtl" style="margin-bottom: 4%;">-->
+<!--                                    <li style="list-style: none;">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                                <ul dir="rtl">-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <hr style="width: 90%; ">-->
+<!--                        <div id="dtl-row-3">-->
+<!--                            <h3 id="station3-title" dir="rtl" style="margin-bottom: 2%; margin-top: 2%">ایستگاه nام</h3>-->
+<!--                            <div class="activities-status">-->
+<!--                                <ul dir="rtl" style="margin-bottom: 4%;">-->
+<!--                                    <li style="list-style: none;">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                                <ul dir="rtl">-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <hr style="width: 90%; ">-->
+<!--                        <div id="dtl-row-4">-->
+<!--                            <h3 id="station4-title" dir="rtl" style="margin-bottom: 2%; margin-top: 2%">ایستگاه nام</h3>-->
+<!--                            <div class="activities-status">-->
+<!--                                <ul dir="rtl" style="margin-bottom: 4%;">-->
+<!--                                    <li style="list-style: none;">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                                <ul dir="rtl">-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li style="list-style: none">-->
+<!--                                        <div style="margin-bottom: 1%; display: flex; flex-direction: row; align-items: center">-->
+<!--                                            <span style="margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #BCC940; display: inline-block"></span>-->
+<!--                                            <strong>مسئله‌ی یک: ‌ </strong>-->
+<!--                                            فلان و بهمان-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    engToFarsiDigits = {
+        '0': '۰',
+        '1': '۱',
+        '2': '۲',
+        '3': '۳',
+        '4': '۴',
+        '5': '۵',
+        '6': '۶',
+        '7': '۷',
+        '8': '۸',
+        '9': '۹',
+    }
+
+    function getCSRFToken() {
+        let cookieValue = null;
+        const name = 'csrftoken';
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the csrf token name?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function addStations(solved_stations){
+        for (let i = 0; i < solved_stations.length; i++) {
+            let stationRow = document.createElement('div')
+            stationRow.className = 'station-dtl-row'
+            stationRow.setAttribute('id', `station${i + 1}-dtl-row`)
+            stationRow.setAttribute('style', 'display: flex; flex-direction: column;')
+
+            let stationTitle = document.createElement('h3')
+            stationTitle.className = 'station-title'
+            stationTitle.setAttribute('id', `s${i + 1}-title`)
+            stationTitle.setAttribute('dir', 'rtl')
+            stationTitle.setAttribute('style', 'margin-bottom: 0%; margin-top: 2%; font-size: max(1.7vw, 14px);')
+            stationTitle.textContent = `ایستگاه ${engToFarsiDigits[i + 1]}`
+
+            let stationStatus = document.createElement('div')
+            stationStatus.className = 'station-status'
+            stationStatus.setAttribute('id', `s${i + 1}-status`)
+            stationStatus.setAttribute('style', 'font-size: max(1vw, 10px); font-weight: 400;')
+
+            let stationProblemsList = document.createElement('ul')
+            stationProblemsList.className = 'station-problems-list'
+            stationProblemsList.setAttribute('id', `s${i + 1}-ps`)
+            stationProblemsList.setAttribute('dir', 'rtl')
+            stationProblemsList.setAttribute('style', 'margin-bottom: 4%;')
+
+            for (let j = 0; j < solved_stations[i]['problems'].length; j++) {
+                let stationProblemItem = document.createElement('li')
+                stationProblemItem.className = 'station-problem-item'
+                stationProblemItem.setAttribute('id', `s${i + 1}-p${j + 1}`)
+                stationProblemItem.setAttribute('style', 'list-style: none;')
+
+                let stationProblemItemRow = document.createElement('div')
+                stationProblemItemRow.className = 'station-problem-item-row'
+                stationProblemItemRow.setAttribute('id', `s${i + 1}-p${j + 1}-row`)
+                stationProblemItemRow.setAttribute('style', 'margin-bottom: 1%; display: flex; flex-direction: row; align-items: center')
+
+                let statusColorSign = document.createElement('span')
+                statusColorSign.className = 'status-color-sign'
+                statusColorSign.setAttribute('id', `s${i + 1}-p${j + 1}-color-sign`)
+                statusColorSign.setAttribute('style', 'margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #32cd32; display: inline-block')
+
+                let strong = document.createElement('strong')
+                strong.textContent = `مسئله‌ی ${engToFarsiDigits[j + 1]}: ‌ `
+
+                stationProblemItemRow.appendChild(statusColorSign)
+                stationProblemItemRow.appendChild(strong)
+                stationProblemItem.appendChild(stationProblemItemRow)
+                stationProblemsList.appendChild(stationProblemItem)
+            }
+
+            let stationActivitiesList = document.createElement('ul');
+            stationActivitiesList.className = 'station-activities-list';
+            stationActivitiesList.setAttribute('id', `s${solved_stations[i].order}-as`);
+            stationActivitiesList.setAttribute('dir', 'rtl');
+            stationActivitiesList.setAttribute('style', 'margin-bottom: 4%;');
+
+            for (let j = 0; j < solved_stations[i]['activities'].length; j++) {
+                let stationActivityItem = document.createElement('li');
+                stationActivityItem.className = 'station-activity-item';
+                stationActivityItem.setAttribute('id', `s${solved_stations[i].order}-a${j + 1}`);
+                stationActivityItem.setAttribute('style', 'list-style: none;');
+
+                let stationActivityItemRow = document.createElement('div');
+                stationActivityItemRow.className = 'station-activity-item-row';
+                stationActivityItemRow.setAttribute('id', `s${solved_stations[i].order}-a${j + 1}-row`);
+                stationActivityItemRow.setAttribute('style', 'margin-bottom: 1%; display: flex; flex-direction: row; align-items: center');
+
+                let statusColorSign = document.createElement('span');
+                statusColorSign.className = 'status-color-sign';
+                statusColorSign.setAttribute('id', `s${solved_stations[i].order}-a${j + 1}-color-sign`);
+                statusColorSign.setAttribute('style', `margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #32cd32; display: inline-block`);
+
+                let strong = document.createElement('strong');
+                strong.textContent = `فعالیت ${engToFarsiDigits[j + 1]}: ` + solved_stations[i]['activities'][j]['activity']['name'];
+
+                stationActivityItemRow.appendChild(statusColorSign);
+                stationActivityItemRow.appendChild(strong);
+                stationActivityItem.appendChild(stationActivityItemRow);
+                stationActivitiesList.appendChild(stationActivityItem);
+            }
+
+            stationStatus.appendChild(stationProblemsList)
+            stationStatus.appendChild(stationActivitiesList);
+            stationRow.appendChild(stationTitle)
+            stationRow.appendChild(stationStatus)
+            document.getElementById('details-wrap').prepend(stationRow)
+            if (i < 9) {
+                let hr = document.createElement('hr')
+                hr.setAttribute('style', 'width: 90%; ')
+                document.getElementById('details-wrap').prepend(hr)
+            }
+        }
+    }
+
+    function addCurrentStation(current_station, next_problem_index, next_activity_index){
+    //     this function does the same as addStation but for the current station and marks the next problem with a different color
+        let stationRow = document.createElement('div');
+        stationRow.className = 'station-dtl-row';
+        stationRow.setAttribute('id', `station${current_station.order}-dtl-row`);
+        stationRow.setAttribute('style', 'display: flex; flex-direction: column;');
+
+        let stationTitle = document.createElement('h3');
+        stationTitle.className = 'station-title';
+        stationTitle.setAttribute('id', `s${current_station.order}-title`);
+        stationTitle.setAttribute('dir', 'rtl');
+        stationTitle.setAttribute('style', 'margin-bottom: 0%; margin-top: 2%; font-size: max(1.7vw, 14px);');
+        stationTitle.textContent = `ایستگاه ${engToFarsiDigits[current_station.order]}`;
+
+        let stationStatus = document.createElement('div');
+        stationStatus.className = 'station-status';
+        stationStatus.setAttribute('id', `s${current_station.order}-status`);
+        stationStatus.setAttribute('style', 'font-size: max(1vw, 10px); font-weight: 400;');
+
+        let stationProblemsList = document.createElement('ul');
+        stationProblemsList.className = 'station-problems-list';
+        stationProblemsList.setAttribute('id', `s${current_station.order}-ps`);
+        stationProblemsList.setAttribute('dir', 'rtl');
+        stationProblemsList.setAttribute('style', 'margin-bottom: 4%;');
+
+        for (let j = 0; j < current_station['problems'].length; j++) {
+            let stationProblemItem = document.createElement('li');
+            stationProblemItem.className = 'station-problem-item';
+            stationProblemItem.setAttribute('id', `s${current_station.order}-p${j + 1}`);
+            stationProblemItem.setAttribute('style', 'list-style: none;');
+
+            let stationProblemItemRow = document.createElement('div');
+            stationProblemItemRow.className = 'station-problem-item-row';
+            stationProblemItemRow.setAttribute('id', `s${current_station.order}-p${j + 1}-row`);
+            stationProblemItemRow.setAttribute('style', 'margin-bottom: 1%; display: flex; flex-direction: row; align-items: center');
+
+            let statusColorSign = document.createElement('span');
+            statusColorSign.className = 'status-color-sign';
+            statusColorSign.setAttribute('id', `s${current_station.order}-p${j + 1}-color-sign`);
+            if (next_problem_index === -1){
+                console.log('no problem')
+                statusColorSign.setAttribute('style', `margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #32cd32; display: inline-block`);
+            } else {
+                statusColorSign.setAttribute('style', `margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: ${j < next_problem_index ? '#32cd32' : '#ffc100'}; display: inline-block`);
+            }
+
+            let strong = document.createElement('strong');
+            strong.textContent = `مسئله‌ی ${engToFarsiDigits[j + 1]}: ‌ ` + current_station['problems'][j]['problem']['name'];
+
+            stationProblemItemRow.appendChild(statusColorSign);
+            stationProblemItemRow.appendChild(strong);
+            stationProblemItem.appendChild(stationProblemItemRow);
+            stationProblemsList.appendChild(stationProblemItem);
+        }
+
+        let stationActivitiesList = document.createElement('ul');
+        stationActivitiesList.className = 'station-activities-list';
+        stationActivitiesList.setAttribute('id', `s${current_station.order}-as`);
+        stationActivitiesList.setAttribute('dir', 'rtl');
+        stationActivitiesList.setAttribute('style', 'margin-bottom: 4%;');
+
+        for (let j = 0; j < current_station['activities'].length; j++) {
+            let stationActivityItem = document.createElement('li');
+            stationActivityItem.className = 'station-activity-item';
+            stationActivityItem.setAttribute('id', `s${current_station.order}-a${j + 1}`);
+            stationActivityItem.setAttribute('style', 'list-style: none;');
+
+            let stationActivityItemRow = document.createElement('div');
+            stationActivityItemRow.className = 'station-activity-item-row';
+            stationActivityItemRow.setAttribute('id', `s${current_station.order}-a${j + 1}-row`);
+            stationActivityItemRow.setAttribute('style', 'margin-bottom: 1%; display: flex; flex-direction: row; align-items: center');
+
+            let statusColorSign = document.createElement('span');
+            statusColorSign.className = 'status-color-sign';
+            statusColorSign.setAttribute('id', `s${current_station.order}-a${j + 1}-color-sign`);
+            statusColorSign.setAttribute('style', `margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: ${j < next_activity_index ? '#32cd32' : '#ffc100'}; display: inline-block`);
+            console.log('nai', next_activity_index)
+
+            let strong = document.createElement('strong');
+            strong.textContent = `فعالیت ${engToFarsiDigits[j + 1]}: ` + current_station['activities'][j]['activity']['name'];
+
+            stationActivityItemRow.appendChild(statusColorSign);
+            stationActivityItemRow.appendChild(strong);
+            stationActivityItem.appendChild(stationActivityItemRow);
+            stationActivitiesList.appendChild(stationActivityItem);
+        }
+
+        stationStatus.appendChild(stationProblemsList);
+        stationStatus.appendChild(stationActivitiesList);
+        stationRow.appendChild(stationTitle);
+        stationRow.appendChild(stationStatus);
+        document.getElementById('details-wrap').prepend(stationRow);
+    }
+
+    function updateTimeline(solved_stations){
+        for (let i = 0; i < solved_stations.length; i++) {
+            let station = document.getElementById(`station-${i + 1}`)
+            station.style.backgroundColor = '#32cd32'
+        }
+        if (solved_stations.length < 10) {
+            let station = document.getElementById(`station-${solved_stations.length + 1}`)
+            station.style.backgroundColor = '#ffc100'
+        }
+    }
+
+    function addNextProblemLink(next_problem_index){
+        if (next_problem_index === -1){
+            let el = document.getElementById('next-p-link')
+            el.style.color = '#bbbbbb'
+            el.style.borderColor = '#bbbbbb'
+            el.style.fontSize = 'max(1.4vw, 12px)'
+            el.style.width = '55%'
+            el.setAttribute('href', '#')
+            el.textContent = 'مسئله‌ها تمام شده‌اند'
+            return
+        }
+        let el = document.getElementById('next-p-link')
+        el.setAttribute('href', `/adventure_in_close_land/problem/${next_problem_index}`)
+    }
+
+    function addNextActivityLink(next_activity_index){
+        console.log('next activity index', next_activity_index)
+        if (next_activity_index === -1){
+            let el = document.getElementById('next-a-link')
+            el.style.color = '#bbbbbb'
+            el.style.borderColor = '#bbbbbb'
+            el.style.fontSize = 'max(1.4vw, 12px)'
+            el.style.width = '55%'
+            el.setAttribute('href', '#')
+            el.textContent = 'فعالیت‌ها تمام شده‌اند'
+            return
+        }
+        let el = document.getElementById('next-a-link')
+        el.setAttribute('href', `/adventure_in_close_land/activity/${next_activity_index}`)
+    }
+
+    function retrieve_data() {
+        const csrftoken = getCSRFToken();
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/journey-details',
+            type: 'GET',
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            success: function (data) {
+                console.log(data['current_station'])
+                console.log(data['next_problem_index'] === -1)
+                console.log(data['next_activity_index'])
+                console.log(data['solved_stations'])
+
+                addStations(data['solved_stations'])
+                updateTimeline(data['solved_stations'])
+                addCurrentStation(data['current_station'], data['next_problem_index'], data['next_activity_index'])
+                addNextProblemLink(data['next_problem_index'])
+                addNextActivityLink(data['next_activity_index'])
+            }
+        })
+    }
+
+    retrieve_data();
+
+</script>
+<audio loop id="123">
+    <source src="{% static 'media/homepage-audio.mp3' %}" type="audio/mpeg"/>
+</audio>
+
+<script>
+    let x = document.getElementById('123')
+    let once_played = false
+    function pause_audio(){
+        console.log('got here')
+        if (once_played) {
+            let audio_icon = document.getElementById('audio-icon')
+            let audio_image = document.querySelectorAll('#audio-icon img')[0]
+            console.log(audio_icon, audio_image)
+            audio_icon.setAttribute('onclick', 'play_audio()')
+            audio_image.setAttribute('src', "{% static 'images/sound-off.png' %}")
+            x.pause()
+        } else {
+            play_audio()
+        }
+    }
+    function play_audio() {
+        if (once_played){
+            let audio_icon = document.getElementById('audio-icon')
+            let audio_image = document.querySelectorAll('#audio-icon img')[0]
+            console.log(audio_icon, audio_image)
+            audio_icon.setAttribute('onclick', 'pause_audio()')
+            audio_image.setAttribute('src', "{% static 'images/sound-on.png' %}")
+        }
+        once_played = true
+        x.play()
+        console.log('done')
+        document.body.removeAttribute('onclick')
+    }
+
+</script>
+</body>
+</html>

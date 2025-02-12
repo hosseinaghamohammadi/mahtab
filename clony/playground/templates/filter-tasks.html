@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>مهتاب</title>
+
+    <style>
+        body{
+            margin: 0;
+        }
+        #page{
+            width: 100%;
+            background-color: white;
+            font-family: Vazirmatn;
+        }
+        #page-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #navbar{
+            width: 100%;
+            height: 80px;
+            background-color: white;
+            font-weight: 900;
+        }
+        #navbar-wrap{
+            width: 92%;
+            height: inherit;
+            background-color: #F2F2F2;
+            box-shadow: 0px 3px 4px rgb(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: row-reverse;
+            color: #404040;
+            padding: 10px 4% 10px 4%;
+        }
+        #orgname{
+            width: 10%;
+            display: flex;
+            flex-direction: row;
+        }
+        #orgname-wrap{
+            width: 70%;
+            font-size: 32px;
+            margin: auto;
+        }
+        #navitems{
+            width: 90%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        #navitems-wrap{
+            width: 30%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        .nav-item{
+            margin: auto;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+        #content{
+            width: 100%;
+            margin-top: 50px;
+            /*background-color: #e5e87d;*/
+        }
+        #content-wrap{
+            width: 100%;
+        }
+        .row{
+            display: flex;
+            flex-direction: column;
+        }
+        .row-wrap{
+            margin: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        #tasks{
+            width: 70%;
+            margin: auto;
+            background-color: #e5e5e5;
+            padding-top: 1%;
+            font-size: 70%;
+            border-radius: 5px;
+        }
+        #tasks-wrap{
+            width: 90%;
+            margin: auto;
+            border-radius: 5px;
+            padding: 1% 2%;
+        }
+        .task-odd > h2, .task-even > h2{
+            text-align: center;
+            margin-top: 0;
+        }
+        #specs{
+            width: 28%;
+        }
+        #specs-wrap{
+            width: 90%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+        #grades{
+            width: 100%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+        }
+        #grades-wrap{
+            width: 100%;
+            margin: auto;
+            font-size: 12px;
+            display: flex;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+        }
+        #grades-wrap > div{
+            width: 19%;
+            display: flex;
+            margin-bottom: 10px;
+        }
+        #topics{
+            width: 100%;
+        }
+        #topics-wrap{
+            width: 90%;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            margin: auto auto 5%;
+        }
+        #topics-wrap > div{
+            width: 40%;
+            display: flex;
+            margin: 1% auto;
+            flex-direction: row-reverse;
+        }
+        .task-odd{
+            background-color: #fcfcfc;
+            padding: 15px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border: 3px solid #a0a0a0;
+            border-bottom-width: 2px;
+            height: 150px;
+            overflow: scroll;
+        }
+        .task-even{
+            background-color: #fcfcfc;
+            padding: 15px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border: 5px solid #a0a0a0;
+            border-bottom-width: 2px;
+            height: 150px;
+            overflow: scroll;
+        }
+        .task-spec{
+            background-color: #a0a0a0;
+            color: black;
+            /*font-style: italic;*/
+            font-weight: 900;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            padding: 5px;
+            border-bottom: 3px solid #a0a0a0;
+            border-right: 5px solid #a0a0a0;
+            border-left: 5px solid #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+<div id="page">
+    <div id="page-wrap">
+        <div id="navbar">
+            <div id="navbar-wrap">
+                <div id="orgname" dir="rtl">
+                    <div id="orgname-wrap">
+                        مهتاب
+                    </div>
+                </div>
+                <div id="navitems">
+                    <div id="navitems-wrap">
+                        <div class="nav-item">
+                            <div class="nav-item-wrap">
+                                بانک مسئله
+                            </div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-item-wrap">
+                                کلاس‌های آموزشی
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="content-wrap">
+                <div id="row1" class="row">
+                    <div id="row1-wrap" class="row-wrap">
+                        <div id="specs">
+                            <div id="specs-wrap">
+                                <div dir="rtl" style="text-align: center">
+                                    <h3>ویژگی‌ها</h3>
+                                </div>
+                                <hr style="width: 90%; border: 1.5px solid black; margin-top: 0px">
+                                <div id="grades">
+                                    <div id="grades-wrap">
+                                        <div>
+                                            <input type="checkbox" name="grade1">
+                                            <label for="grade1">اول</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade2">
+                                            <label for="grade2">دوم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade3">
+                                            <label for="grade3">سوم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade4">
+                                            <label for="grade4">چهارم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade5">
+                                            <label for="grade5">پنجم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade6">
+                                            <label for="grade6">ششم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade7">
+                                            <label for="grade7">هفتم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade8">
+                                            <label for="grade8">هشتم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade9">
+                                            <label for="grade9">نهم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade10">
+                                            <label for="grade10">دهم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade11">
+                                            <label for="grade11">یازدهم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="grade12">
+                                            <label for="grade12">دوازدهم</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="width: 90%; border: 1.5px solid black; margin-top: 0px">
+                                <div id="topics">
+                                    <div id="topics-wrap">
+                                        <div>
+                                            <input type="checkbox" name="level1">
+                                            <label for="level1">مبتدی هستم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="level2">
+                                            <label for="level2">آشنا هستم</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="level3">
+                                            <label for="level3">جاافتاده هستم</label>
+                                        </div>
+                                    </div>
+                                </div>
+<!--                                <hr style="width: 90%; border: 1.5px solid black; margin-top: 0px">-->
+                                <div style="padding: 0% 0% 5% 10%; display: flex; flex-direction: row;">
+                                    <button id="do-filter-button" onclick="filter_tasks()" style="font-family: Vazirmatn; margin: auto; background-color: #f1d66f; box-shadow: 1px 1px 4px #7b7b7b; border: 1px solid black; border-radius: 3px">جدا کن</button>
+                                    <a id="button-link" style="display: block; margin: auto">
+                                        <button id="start-solving-button" disabled style="box-shadow: 1px 1px 4px #7b7b7b; font-family: Vazirmatn; margin: auto;">شروع به حل مسئله‌ها</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tasks">
+                            <div id="tasks-wrap">
+                                <div id="result-stat">
+                                    <div id="result-stat-wrap" dir="rtl">
+                                        <h2><span>{{tasks|length}}</span>
+                                        فعالیت یافت شد.
+                                        </h2>
+                                    </div>
+                                </div>
+                                {% for task_item in tasks %}
+                                    <div class="one-task">
+                                        <div class="task-odd">
+                                            <h2 dir="rtl">{{task_item.name|safe}}</h2>
+                                            {{task_item.problem_statement|safe}}
+                                        </div>
+                                        <div class="task-spec" dir="rtl">
+                                            {% if "1-easy" in task_item.grades_and_difficulty %}
+                                                پایهٔ اول، مبتدی
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "1-medium" in task_item.grades_and_difficulty %}
+                                                پایهٔ اول، آشنا
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "1-hard" in task_item.grades_and_difficulty %}
+                                                پایهٔ اول، جاافتاده
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "2-easy" in task_item.grades_and_difficulty %}
+                                                پایهٔ دوم، مبتدی
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "2-medium" in task_item.grades_and_difficulty %}
+                                                پایهٔ دوم، آشنا
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "2-hard" in task_item.grades_and_difficulty %}
+                                                پایهٔ دوم، جاافتاده
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "3-easy" in task_item.grades_and_difficulty %}
+                                                پایهٔ سوم، مبتدی
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "3-medium" in task_item.grades_and_difficulty %}
+                                                پایهٔ سوم، آشنا
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "3-hard" in task_item.grades_and_difficulty %}
+                                                پایهٔ سوم، جاافتاده
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "4-easy" in task_item.grades_and_difficulty %}
+                                                پایهٔ چهارم، مبتدی
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "4-medium" in task_item.grades_and_difficulty %}
+                                                پایهٔ چهارم، آشنا
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "4-hard" in task_item.grades_and_difficulty %}
+                                                پایهٔ چهارم، جاافتاده
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "5-easy" in task_item.grades_and_difficulty %}
+                                                پایهٔ پنجم، مبتدی
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "5-medium" in task_item.grades_and_difficulty %}
+                                                پایهٔ پنجم، آشنا
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "5-hard" in task_item.grades_and_difficulty %}
+                                                پایهٔ پنجم، جاافتاده
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "6-easy" in task_item.grades_and_difficulty %}
+                                                پایهٔ ششم، مبتدی
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "6-medium" in task_item.grades_and_difficulty %}
+                                                پایهٔ ششم، آشنا
+                                            <span>‌ ‌ ‌ </span>
+                                            {%endif%}
+                                            {% if "6-hard" in task_item.grades_and_difficulty %}
+                                                پایهٔ ششم، جاافتاده
+                                            <span>‌ ‌ ‌ </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr style="border-color: #dddddd00;">
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script>
+    let no_filter = true
+
+    let result_n = document.querySelector('#result-stat-wrap > h2 > span')
+    String.prototype.toIndiaDigits= function(){
+             let id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+             return this.replace(/[0-9]/g, function(w){
+              return id[+w]
+             });
+        }
+    result_n.textContent = String(result_n.textContent).toIndiaDigits()
+
+    function filter_tasks(){
+        let check_list = document.getElementsByTagName('input')
+        let labels = document.getElementsByTagName('label')
+        let spec_list = document.getElementsByClassName('task-spec')
+
+        let task_list = document.getElementsByClassName('one-task')
+        for (let i = 0; i < task_list.length; i++) {
+            task_list[i].style.display = 'block'
+        }
+
+        let grades = []
+        let gradeString = ''
+        for (let i = 0; i < 12; i++) {
+            if (check_list[i].checked){
+                grades.push(i)
+            }
+        }
+        if (grades.length > 1){
+            return // TO DO
+        }
+        if (grades.length === 1){
+            gradeString = labels[grades[0]].textContent
+        }
+        let wholeString = gradeString
+        let levels = []
+        let levelString = ''
+        for (let i = 12; i < 15; i++) {
+            if (check_list[i].checked){
+                levels.push(i)
+            }
+        }
+        if (levels.length > 1){
+            return // TO DO
+        }
+        if (levels.length === 1){
+            levelString = labels[levels[0]].textContent.split(' ')[0]
+            wholeString = gradeString.concat('، ').concat(levelString)
+        }
+
+
+        let short_list = []
+        for (let i = 0; i < spec_list.length; i++) {
+            console.log(wholeString.length)
+            if (spec_list[i].textContent.includes(wholeString)){
+                short_list.push(i)
+                console.log(i, i, i)
+            }
+        }
+        console.log(short_list)
+
+        for (let i = 0; i < task_list.length; i++) {
+            if (!(short_list.includes(i))){
+                task_list[i].style.display = 'none'
+                console.log(i, i)
+            }
+        }
+
+        let result_n = document.querySelector('#result-stat-wrap > h2 > span')
+        String.prototype.toIndiaDigits= function(){
+             let id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+             return this.replace(/[0-9]/g, function(w){
+              return id[+w]
+             });
+        }
+        result_n.textContent = String(short_list.length).toIndiaDigits()
+
+
+        let link = document.getElementById('button-link')
+        link.setAttribute('href', `http://127.0.0.1:8000/task_bank?constraints=${wholeString}`)
+        let start_solving_button = document.getElementById('start-solving-button')
+        start_solving_button.removeAttribute('disabled')
+    }
+</script>
+</html>

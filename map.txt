@@ -1,0 +1,81 @@
+django project - website
+
+
+    backend
+
+        - database models design
+        - logging
+                - https://realpython.com/python-logging/
+        - testing
+        - git
+        - request life cycle
+            - api
+                - fastapi
+                        - https://realpython.com/fastapi-python-web-apis/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=python-pydantic
+                - rest API
+                        - https://realpython.com/api-integration-in-python/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=fastapi-python-web-apis#django-rest-framework
+            - serializer
+            
+        - django
+            < ORM
+                < queries (django docs)
+            - middlewares
+            - decorators and predefined modularities
+            - app models management
+                    - https://realpython.com/move-django-model/
+            - rendering markdown
+                    - https://realpython.com/django-markdown/
+            - authorization
+                    - https://realpython.com/django-view-authorization/
+            - admin
+                    - https://realpython.com/customize-django-admin-python/
+                    - https://books.agiliq.com/projects/django-admin-cookbook/en/latest/optimize_queries.html
+            - access control
+                    - https://realpython.com/manage-users-in-django-admin/
+            - downtime management
+                    - https://realpython.com/create-django-index-without-downtime/
+            - redirects
+                    - https://realpython.com/django-redirects/
+            - tests
+                    - https://realpython.com/test-driven-development-of-a-django-restful-api/
+            - polymorphism
+                    - https://realpython.com/modeling-polymorphism-django-python/
+            - caching
+                    - https://realpython.com/caching-in-django-with-redis/
+            - API
+                    - https://realpython.com/courses/django-rest-framework/
+            - deploy
+                    - https://realpython.com/django-nginx-gunicorn/
+                    - https://realpython.com/courses/django-app-with-gunicorn-nginx/
+
+
+        - python knowledge
+            - decorators
+                    - https://realpython.com/primer-on-python-decorators/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=python-classes#simple-decorators-in-python
+            - magic functions
+            - generator and yield
+                    - https://realpython.com/introduction-to-python-generators/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=primer-on-python-decorators
+            - some pythonic programming
+            - property
+                    - https://realpython.com/python-property/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=primer-on-python-decorators
+            - predefined naming patterns (_, __)
+            - context managers
+                    - https://realpython.com/python-with-statement/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=primer-on-python-decorators
+            - async
+                - features
+                        - https://realpython.com/python-async-features/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=async-io-python
+                - async io
+                        - https://realpython.com/async-io-python/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=python-with-statement#conclusion
+            - Class
+                - OOP
+                    - Inheritance, Polymorphism, Encapsulation
+                - naming
+            - libraries
+                    - https://docs.python.org/3/py-modindex.html
+            - general
+                        - https://realpython.com/python-pydantic/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=python-pycache#validating-models-and-fields
+            - books
+                        - https://wiki.python.org/moin/PythonBooks
+
+    - frontend
+        -

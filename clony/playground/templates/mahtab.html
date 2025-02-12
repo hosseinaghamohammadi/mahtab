@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>مهتاب</title>
+
+    <style>
+        body{
+            margin: 0;
+        }
+        #page{
+            width: 100%;
+            background-color: white;
+            font-family: Vazirmatn;
+        }
+        #page-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #navbar{
+            width: 100%;
+            height: 80px;
+            background-color: white;
+            font-weight: 900;
+        }
+        #navbar-wrap{
+            width: 92%;
+            height: inherit;
+            background-color: #F2F2F2;
+            box-shadow: 0px 3px 4px rgb(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: row-reverse;
+            color: #404040;
+            padding: 10px 4% 10px 4%;
+        }
+        #orgname{
+            width: 10%;
+            display: flex;
+            flex-direction: row;
+        }
+        #orgname-wrap{
+            width: 70%;
+            font-size: 32px;
+            margin: auto;
+        }
+        #navitems{
+            width: 90%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        #navitems-wrap{
+            width: 30%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        .nav-item{
+            margin: auto;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+        #content{
+            width: 100%;
+            height: 450px;
+            /*background-color: #e5e87d;*/
+        }
+        #content-wrap{
+            width: 100%;
+            /*background-color: #00cac5;*/
+        }
+        .row{
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+        .row-wrap{
+            position: relative;
+            top: 60%;
+            margin: auto;
+            width: 100%;
+        }
+        .option{
+            width: 30%;
+            margin: auto;
+            position: relative;
+            left: 20%;
+        }
+        .option-wrap{
+            width: 85%;
+            background-color: #a0a0a0;
+            padding: 20px 20px 20px 20px;
+            margin: auto;
+            color: #252525;
+            border-radius: 5px;
+        }
+        .bold-title{
+            font-size: 2.55vw;
+            display: block;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            font-weight: 700;
+        }
+        .title-desc{
+            display: block;
+            margin: auto;
+            font-size: 1.1vw;
+            text-align: center;
+        }
+        #option2{
+            left:-20%;
+        }
+        #row3-wrap{
+            top: 80%;
+        }
+        #option3{
+            left: 15%;
+        }
+        #footer{
+            width: 100%;
+            background-color: #F2F2F2;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+        #footer-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            margin: auto;
+        }
+        #ft-items{
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+        }
+        #ft-items-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            margin: auto;
+        }
+        .ft-item{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+        .ft-item-wrap{
+            width: 100%;
+            margin: auto;
+            /*height: 100px;*/
+            background-color: #e5e87d;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="page">
+    <div id="page-wrap">
+        <div id="navbar">
+            <div id="navbar-wrap">
+                <div id="orgname" dir="rtl">
+                    <div id="orgname-wrap">
+                        مهتاب
+                    </div>
+                </div>
+                <div id="navitems">
+                    <div id="navitems-wrap">
+                        <div class="nav-item">
+                            <div class="nav-item-wrap">
+                                بانک مسئله
+                            </div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-item-wrap">
+                                کلاس‌های آموزشی
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="content-wrap">
+                <div id="row1" class="row">
+                    <div id="row1-wrap" class="row-wrap">
+                        <div id="option1" class="option">
+                            <div id="option1-wrap" class="option-wrap">
+                                <span class="bold-title">بانک مسئله علوم رایانه</span>
+                                <span class="title-desc">پایه‌های اول تا یازدهم</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="row2" class="row">
+                    <div id="row2-wrap" class="row-wrap">
+                        <div id="option2" class="option">
+                            <div id="option2-wrap" class="option-wrap">
+                                <span class="bold-title">دسته‌بندی مسئله‌ها</span>
+                                <span class="title-desc">بر اساس پایه، سطح و مبحث</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="row3" class="row">
+                    <div id="row3-wrap" class="row-wrap">
+                        <div id="option3" class="option">
+                            <div id="option3-wrap" class="option-wrap">
+                                <span class="bold-title">کلاس‌های آموزشی</span>
+                                <span class="title-desc">از جمله برنامه‌نویسی و هوش مصنوعی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footer-wrap">
+                <div id="ft-items">
+                    <div id="ft-items-wrap">
+                        <div class="ft-item">
+                            <div class="ft-item-wrap">
+                                سلام
+                            </div>
+                        </div>
+                        <div class="ft-item">
+                            <div class="ft-item-wrap">
+                                سلام
+                            </div>
+                        </div>
+                        <div class="ft-item">
+                            <div class="ft-item-wrap">
+                                سلام
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

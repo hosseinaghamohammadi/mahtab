@@ -1,0 +1,488 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>JS logo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <style>
+        @keyframes changeColor {
+            0% {background-color: #faeacc
+            }
+            100% {background-color: #e19904
+            }
+        }
+        @keyframes comeDown {
+            0% {opacity: 1;}
+            100% {
+                opacity: 0;
+                transform: translateY(57px);
+            }
+        }
+        @keyframes comeAcross {
+            0% {opacity: 1;}
+            /*50% {*/
+            /*    transform: translate(0px, 60px);*/
+            /*    !*opacity: 0.8;*!*/
+            /*}*/
+            /*99% {*/
+            /*    opacity: 0.01;*/
+            /*    transform: translate(0px, 60px)*/
+            /*}*/
+            100% {
+                /*display: none;*/
+                opacity: 0;
+                transform: translate(0px, 60px)
+            }
+        }
+        @keyframes fadeOut {
+            0% {
+                opacity: 1
+            }
+            66% {
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        body{
+            font-family: "Pinar Medium";
+        }
+        #container{
+            width: 100%;
+            margin: auto;
+        }
+        #area{
+            width: 100%;
+            margin: auto;
+        }
+        #area-wrapper{
+            width: 80%;
+            height: 90vh;
+            background-color: darkgoldenrod;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+        }
+        #whole-board{
+            width: 60%;
+            height: inherit;
+            background-color: #e1c180;
+        }
+        #func-board{
+            text-align: center;
+            width: 40%;
+            margin: auto;
+        }
+        .line, .cell-piece{
+            margin: auto;
+        }
+        #panel{
+            display: flex;
+            flex-direction: column;
+        }
+        #options-sec{
+            display: flex;
+            flex-direction: column;
+        }
+        #func-board > .cell{
+            /*animation-name: fadeOut;*/
+            /*animation-duration: 3s;*/
+            /*animation-fill-mode: forwards;*/
+            /*animation-timing-function: ease-out;*/
+        }
+
+    </style>
+</head>
+<body>
+<!--    <form>-->
+<!--        <textarea id="mytextarea"></textarea>-->
+<!--    </form>-->
+<!--<input type="button" onclick="addSphere()" value="اضافه کن">-->
+<!--<input type="button" onclick="calculateInputs()" value="اجرا کن">-->
+<div id="container">
+    <div id="area">
+        <div id="area-wrapper">
+            <div id="whole-board" style="text-align: right">
+                <div id="func-board">
+                    <input class="cell" style="background-color: #e5e87d; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #e5e87d; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #e5e87d; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #e5e87d; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #e5e87d; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #e5e87d; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #e5e87d; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #e5e87d; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #e5e87d; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #00cac5; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid #00678a; text-align: center; font-size: 20px" value="=">
+                    <div class="line" style="border: 3px solid red; width: 0px; height: 15px;"></div>
+                    <input class="cell" style="background-color: #07ba07; width: 30px; aspect-ratio: 1 / 1; border-radius: 50%; border: 2px solid red; text-align: center; font-size: 20px">
+                </div>
+                <input type="button" value="بررسی جواب" onclick="submitAnswer()" style="font-family: 'Pinar Medium'">
+            </div>
+            <div id="panel">
+                <div id="options-sec">
+                    <input onkeydown="removeEmptyErrorNode()" class="option" style="margin: 10px 10px 10px 10px; background-color: #f3f3f3; border: 2px solid #555555; border-radius: 10%; width: 30px; height: 30px; text-align: center; font-size: 20px" type="text">
+                </div>
+                <div id="buttons">
+                    <input id="remove-option-button" type="button" onclick="removeOption()" value="کم کن" style="font-family: 'Pinar Medium'">
+                    <input id="add-option-button" type="button" onclick="addOption()" value="اضافه کن" style="font-family: 'Pinar Medium'">
+                    <input id="initiate-button" type="button" onclick="createOptions()" value="شروع" style="font-family: 'Pinar Medium'">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    let inputs = Array()
+    const p2e = s => s.replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+
+
+
+    function checkValueError(nodes){
+        for (let i = 0; i < nodes.length; i++){
+            let node = nodes[i].value
+            console.log(node)
+            let conform = true
+            if (!(node === '+') && !(node === '-') && !(node === '*') && !(node === '/')) {
+                conform = !isNaN(node) // if number, returns false
+            }
+            if (!conform) {
+                console.log(i)
+                return {'error': true, 'value': 'در هر خانه باید عدد یا چهار عمل اصلی را بنویسید.'}
+            }
+        }
+        return {'error': false, 'value': 'no comment'}
+    }
+    function checkError(nodes){
+        let checkResult = checkValueError(nodes)
+        if (checkResult.error){
+            return checkResult
+        }
+        return checkResult // did not change the error  message
+    }
+    function checkEmpty(){
+        let elements = Array.prototype.slice.call(document.getElementsByClassName('option'))
+        let flag = false
+        elements.forEach(function (x){
+            console.log(x.value.length)
+            if (x.value.length === 0){
+                flag = true
+            }
+        })
+        return flag
+    }
+    function createOptions(){
+        let options = document.getElementsByClassName('option')
+        let error = checkError(options)
+        if (error.error){
+            console.log('error')
+
+            let errorElement = document.createElement('div')
+            errorElement.setAttribute('id', 'creation-error')
+            errorElement.setAttribute('style', 'background-color: red; color: white; border-radius: 10px; width: 200px; font-size: 10px; text-align: center; margin: 0px 0px 5px 0px;')
+            errorElement.textContent = error.value
+            errorElement.setAttribute('dir', 'rtl')
+
+            let btnSec = document.getElementById('buttons')
+            btnSec.insertBefore(errorElement, btnSec.firstChild)
+            return null
+        }
+
+        let optionsSec = document.getElementById('options-sec')
+        optionsSec.style.flexDirection = 'row'
+
+        // let options = document.getElementsByClassName('option')
+        for (let i = 0; i < options.length; i++){
+            inputs.push({'index': i, 'value': options[i].value})
+            options[i].disabled = true
+        }
+
+        let buttons = document.getElementById('buttons')
+        buttons.style.display = 'none'
+
+        for (let i = 0; i < options.length - 1; i++) {
+            addSphere()
+        }
+
+    }
+    function addEmptyErrorNode(){
+        let optionsSec = document.getElementById('options-sec')
+
+        let newNode = document.createElement('div')
+        newNode.setAttribute('dir', 'rtl')
+        newNode.setAttribute('class', 'empty-error')
+        newNode.setAttribute('style', 'background-color: red; border-radius: 10px; color: white; text-align: center; font-size: 10px; width: 120px')
+
+        newNode.textContent = 'بعضی موارد پُر نشده‌انده!'
+
+        optionsSec.appendChild(newNode)
+    }
+    function removeEmptyErrorNode(){
+        let nodes = document.getElementsByClassName('empty-error')
+        if (nodes.length > 0) {
+            nodes[0].remove()
+        }
+    }
+    function addOption(){
+        if (checkEmpty()) {
+            addEmptyErrorNode()
+            return null
+        }
+
+        let sec = document.getElementById('options-sec')
+        let newOption = document.createElement('input')
+        newOption.setAttribute('class', 'option')
+        newOption.setAttribute('onkeydown', 'removeEmptyErrorNode()')
+        newOption.setAttribute('style', 'display: block; margin: 10px 10px 10px 10px; background-color: #f3f3f3; border: 2px solid #555555; border-radius: 10%; width: 30px; height: 30px; text-align: center; font-size: 20px')
+        newOption.setAttribute('type', 'class')
+
+        sec.appendChild(newOption)
+        // sec.insertBefore(newOption, sec.firstChild)
+
+    }
+    function removeOption(){
+        if (document.getElementsByClassName('option').length > 1) {
+            document.getElementById('options-sec').lastChild.remove()
+        }
+    }
+    function addSphere(){
+        let board = document.getElementById('func-board')
+        // let sphereDiv = document.createElement('div')
+        // sphereDiv.setAttribute('class', 'cell-piece')
+        // sphereDiv.setAttribute('style', 'width: 30px; height: 30px;')
+
+        let sphereInput = document.createElement('input')
+        sphereInput.setAttribute('type', 'text')
+        sphereInput.setAttribute('class', 'cell')
+        sphereInput.setAttribute('style', 'background-color: #e5e87d; border-radius: 50%; border: 2px solid red; font-size: 20px; text-align: center; width: 30px; aspect-ratio: 1 / 1;')
+
+        let sphereLine = document.createElement('div')
+        sphereLine.setAttribute('class', 'line')
+        sphereLine.setAttribute('style', 'border: 3px solid red; width: 0px; height: 15px; margin: auto;')
+
+        // sphereDiv.appendChild(sphereInput)
+        board.insertBefore(sphereLine, board.firstChild)
+        board.insertBefore(sphereInput, board.firstChild)
+
+    }
+    function appearingResult(result){
+        let sphereInput = document.createElement('input')
+        sphereInput.setAttribute('type', 'text')
+        sphereInput.setAttribute('class', 'cell')
+        sphereInput.setAttribute('style', 'opacity: 0; background-color: #e5e87d; border-radius: 50%; border: 4px solid red; font-size: 20px; text-align: center; width: 30px; aspect-ratio: 1 / 1;')
+        sphereInput.setAttribute('value', String(result))
+        let sphereLine = document.createElement('div')
+        sphereLine.setAttribute('class', 'line')
+        sphereLine.setAttribute('style', 'opacity: 0; border: 3px solid red; width: 0px; height: 15px; margin: auto;')
+
+        let brd = document.getElementById('func-board')
+        brd.insertBefore(sphereLine, brd.firstChild)
+        brd.insertBefore(sphereInput, brd.firstChild)
+    }
+    function firstSlide(idx){
+        console.log('in first')
+        let cells = document.getElementsByClassName('cell')
+        cells[idx].style.transition = 'transform 2s'
+        cells[idx].style.transform = 'translate(-60px, 57px)'
+        let lines = document.getElementsByClassName('line')
+        lines[idx].style.opacity = '0'
+    }
+    function secondSlide(idx){
+        console.log('in second')
+        let cells = document.getElementsByClassName('cell')
+        cells[idx].style.animationName = 'comeAcross'
+        cells[idx].style.animationTimingFunction = 'ease'
+        cells[idx].style.animationDuration = '2s'
+        cells[idx].style.animationFillMode = 'forwards'
+
+        cells[idx+1].style.animationName = 'fadeOut'
+        cells[idx+1].style.animationTimingFunction = 'ease'
+        cells[idx+1].style.animationDuration = '2s'
+        cells[idx+1].style.animationFillMode = 'forwards'
+
+    }
+    function thirdSlide(idx){
+        let cells = document.getElementsByClassName('cell')
+        let total = Number(cells[idx].value) + Number(cells[idx+1].value)
+        cells[idx+1].value = String(total)
+    }
+    function calculateExpression(stackArray, sign_index){
+        console.log(stackArray)
+        console.log(sign_index)
+        let board = document.getElementById('func-board')
+        let nodes = document.getElementsByClassName('cell')
+        let number = sign_index
+        if (number < 2 && stackArray[sign_index].value !== '=') {
+            return {'error:': true, 'value': 'برای این عمل کمتر از ۲تا عدد وجود داره.'}
+        }
+        if (stackArray[sign_index].value === '+') {
+            let output = Number(stackArray[0].value)
+            for (let i = 1; i < number; i++) {
+                output += Number(stackArray[i].value)
+
+                setTimeout(function () {
+                    nodes[0].style.transition = 'transform 1.5s'
+                    nodes[0].style.transform = 'translate(60px, 60px)'
+                }, 2000)
+            }
+            return {'error': false, 'value': output}
+        } else if (stackArray[sign_index].value === '-') {
+            let output = Number(stackArray[0].value) - Number(stackArray[1].value)
+            return {'error': false, 'value': output}
+        } else if (stackArray[sign_index].value === '*') {
+            let output = 1
+            for (let i = 0; i < number; i++) {
+                output *= Number(stackArray[i].value)
+            }
+            return {'error': false, 'value': output}
+        } else if (stackArray[sign_index].value === '/') {
+            if (number === 2) {
+                let output = Number(stackArray[0].value) / Number(stackArray[1].value)
+                return {'error': false, 'value': output}
+            } else {
+                return {'error': true, 'value': 'تقسیم نمی‌تونه کار کنه!'}
+            }
+        } else if (stackArray[sign_index].value === '=') {
+            if (number !== 1 || stackArray.length !== 3) {
+                return {'error': true, 'value': 'مساوی نمی‌تونه کار کنه!'}
+            } else if (Number(stackArray[sign_index - 1].value) === Number(stackArray[sign_index + 1].value)) {
+                return {'error': false, 'value': 'correct'}
+            }
+        }
+    }
+    function zeroSlide(sign_index){
+        let cells = document.getElementsByClassName('cell')
+        cells[sign_index].style.animationName = 'changeColor'
+        cells[sign_index].style.animationDuration = '0.8s'
+        cells[sign_index].style.animationIterationCount = 'infinite'
+        cells[sign_index].style.animationTimingFunction = 'ease-out'
+        cells[sign_index].style.animationDirection = 'alternate'
+    }
+    function oneStepAdd(time, idx, sign_index){
+        console.log(sign_index)
+        setTimeout(zeroSlide, time, sign_index)
+        setTimeout(firstSlide, time, idx)
+        setTimeout(secondSlide, time+2000, idx)
+        setTimeout(thirdSlide, time+3000, idx)
+    }
+    function downSecond(idx){
+        let cells = document.getElementsByClassName('cell')
+        cells[idx].style.animationName = 'comeDown'
+        cells[idx].style.animationTimingFunction = 'ease'
+        cells[idx].style.animationDuration = '2s'
+        cells[idx].style.animationFillMode = 'forwards'
+
+        cells[idx+1].style.animationName = 'fadeOut'
+        cells[idx+1].style.animationTimingFunction = 'ease'
+        cells[idx+1].style.animationDuration = '2s'
+        cells[idx+1].style.animationFillMode = 'forwards'
+        cells[idx+1].style.animationIterationCount = '1'
+    }
+    function downThird(idx){
+        let cells = document.getElementsByClassName('cell')
+        let total = Number(cells[idx].value)
+        cells[idx+1].value = String(total)
+    }
+    function downSlide(time, idx, sign_index){
+        console.log(sign_index)
+        setTimeout(downSecond, time+2000, idx)
+        setTimeout(downThird, time+3000, idx)
+    }
+    function submitAnswer(){
+        // checking values
+        // validating expression and calculating
+        let nodes = document.getElementsByClassName('cell')
+        let stackArray = Array()
+        let signs = Array()
+        for (let i = 0; i < nodes.length; i++) {
+            stackArray.push({'index': i, 'value': nodes[i].value})
+            if (isNaN(nodes[i].value)) {
+                signs.push({'index': i, 'sign': nodes[i].value})
+            }
+        }
+
+        let counter = 0
+        for (let i = 0; i < signs.length; i++) {
+            let next_sign_index = signs[i].index - counter
+            console.log(next_sign_index)
+            let sign = signs[i].sign
+            for (let j = 0; j < next_sign_index - 1; j++) {
+                console.log(counter, j, i, sign)
+                switch (sign){
+                    case '+':
+                        setTimeout(oneStepAdd, 1000 * (counter+j), 4000*(counter+j), counter+j, counter+next_sign_index)
+                        break
+                    case '-':
+                        break
+                    case '*':
+                        break
+                    case '/':
+                        break
+                }
+            }
+            if (sign !== '=') {
+                setTimeout(downSlide, 1000 * (counter + next_sign_index - 1 - i), 4000*(counter+next_sign_index-1), counter+next_sign_index-1, counter + next_sign_index)
+            }
+            counter = signs[i].index
+        }
+
+
+        // for (let i = 0; i < signs.length; i++) {
+        //     let next_sign_index = signs[i] - counter
+        //
+        //     let output = calculateExpression(stackArray, next_sign_index)
+        //
+        //     if (!output.error){
+        //         if (typeof output.value === 'string'){
+        //             return null
+        //         }
+        //
+        //         counter = signs[i]
+        //
+        //         let sphereInput = document.createElement('input')
+        //         sphereInput.setAttribute('type', 'text')
+        //         sphereInput.setAttribute('class', 'cell')
+        //         sphereInput.setAttribute('style', 'background-color: #e5e87d; border-radius: 50%; border: 4px solid red; font-size: 20px; text-align: center; width: 30px; aspect-ratio: 1 / 1;')
+        //         sphereInput.setAttribute('value', String(output.value))
+        //         let sphereLine = document.createElement('div')
+        //         sphereLine.setAttribute('class', 'line')
+        //         sphereLine.setAttribute('style', 'border: 3px solid red; width: 0px; height: 15px; margin: auto;')
+        //
+        //         let brd = document.getElementById('func-board')
+        //
+        //         for (let j = 0; j < next_sign_index + 1; j++) {
+        //             setTimeout(function () {
+        //                 brd.firstChild.remove()
+        //                 brd.firstChild.remove()
+        //             }, 3000*(j+1))
+        //             console.log(brd)
+        //         }
+        //         brd.insertBefore(sphereLine, brd.firstChild)
+        //         brd.insertBefore(sphereInput, brd.firstChild)
+        //
+        //         stackArray = [{'index': 0, 'value': sphereInput.value}].concat(stackArray.slice(next_sign_index + 1, stackArray.length))
+        //     } else {
+        //         return // handle error
+        //     }
+        // }
+
+    }
+</script>
+
+
+</body>
+</html>

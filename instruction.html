@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <meta name="referrer" content="origin">
+    <script src="https://cdn.tiny.cloud/1/wemlyb03abc1payzknc71t8dk2ec83o4o1keizu7z7e59jn6/tinymce/7/tinymce.min.js"></script>
+
+
+    <title>playground</title>
+    <style>
+        body{
+            font-family: "Pinar Medium";
+        }
+        #container{
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: auto;
+            position: relative;
+            /*text-align: center;*/
+        }
+        canvas{
+            background-color: lightgrey;
+            /*margin: auto;*/
+        }
+
+        #pointer{
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+            border-top: 5px solid blue;
+            background-color: forestgreen;
+            position: absolute;
+            left: 240px;
+            top: 240px;
+            opacity: 0.5;
+        }
+        form{
+            margin-left: 50px;
+        }
+    </style>
+
+<!--    <script>-->
+<!--      tinymce.init({-->
+<!--        selector: '#mytextarea'-->
+<!--      });-->
+<!--    </script>-->
+</head>
+<body>
+
+<form>
+    <textarea id="mytextarea">ali</textarea>
+    <button>submit it</button>
+</form>
+
+<div id="container">
+
+    <div id="pointer"></div>
+    <canvas id="board" width="500px" height="500px">
+    </canvas>
+
+    <form dir="rtl" onkeydown="return event.key !== 'Enter';">
+        <label>
+            دستور را وارد کن:
+            <input type="text">
+        </label>
+        <input type="button" onclick="handle_command()" value="اجرا کن">
+    </form>
+</div>
+
+<script>
+    let pointerX = 250
+    let pointerY = 250
+    let state = 'up' /* up, right, down, left */
+    let direction = 0
+
+    const p2e = s => s.replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+
+    function execute(command){
+        let pointer = document.getElementById('pointer')
+        // let command = document.getElementsByTagName('input')[0].value
+
+        command = p2e(command)
+        let commandParts = command.split(" ")
+
+        if(commandParts.length === 4 && commandParts[1] === 'واحد' && commandParts[2] === 'برو' && commandParts[3] === 'جلو'){
+            let steps = parseInt(commandParts[0])
+            if(steps <= 500 && steps >= 0){
+
+                let m2 = document.getElementById('board')
+                let m = m2.getContext('2d')
+                m.beginPath()
+                m.moveTo(pointerX, pointerY)
+                let moved = false
+
+                if(state === 'up'){
+                    if (pointerY - steps >= 0) {
+                        m.lineTo(pointerX, pointerY - steps)
+                        pointerY = pointerY - steps
+                        moved = true
+                    }
+                } else if(state === 'down') {
+                    if (pointerY + steps <= 500) {
+                        m.lineTo(pointerX, pointerY + steps)
+                        pointerY = pointerY + steps
+                        moved = true
+                    }
+                } else if(state === 'right') {
+                    if (pointerX + steps <= 500) {
+                        m.lineTo(pointerX + steps, pointerY)
+                        pointerX = pointerX + steps
+                        moved = true
+                    }
+                } else if(state === 'left') {
+                    if (pointerX - steps >= 0)
+                    m.lineTo(pointerX - steps, pointerY)
+                    pointerX = pointerX - steps
+                    moved = true
+                }
+                m.stroke()
+                if (moved) {
+                    pointer.style.left = pointerX - 10
+                    pointer.style.top = pointerY - 10
+                }
+            } else if (steps > 500){
+                console.log('bad')
+            }
+        } else if (commandParts.length === 1 && commandParts[0] === 'راست'){
+            if (state === 'up') state = 'right'
+            else if (state === 'right') state = 'down'
+            else if (state === 'down') state = 'left'
+            else if (state === 'left') state = 'up'
+
+            direction += 1
+            direction = direction % 4
+            pointer.style.transform = "rotate(" + (direction * 90) +"deg)"
+        } else if (commandParts.length === 1 && commandParts[0] === 'چپ'){
+            if (state === 'up') state = 'left'
+            else if (state === 'right') state = 'up'
+            else if (state === 'down') state = 'right'
+            else if (state === 'left') state = 'down'
+
+            direction -= 1
+            direction %= 4
+            pointer.style.transform = "rotate(" + (direction * (-90)) + "deg)"
+        }
+    }
+
+    function handle_command(){
+        let c = document.getElementsByTagName('input')[0].value
+        // let request = new XMLHttpRequest()
+        // request.open("POST",
+        //     "localhost:8000/test",
+        //     true)
+        // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // request.send('s=ma')
+        const body = {
+          userId: 1,
+          title: "Fix my bugs",
+          completed: false
+        };
+        $.post("dataventure.io/post_req", body, (data, status) => {
+          console.log(data);
+        });
+        execute(c)
+    }
+</script>
+
+
+
+<script>
+    tinymce.init({
+  selector: 'textarea#mytextarea',
+  plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion',
+  editimage_cors_hosts: ['picsum.photos'],
+  menubar: 'file edit view insert format tools table help',
+  toolbar: "undo redo | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl",
+  autosave_ask_before_unload: true,
+  autosave_interval: '30s',
+  autosave_prefix: '{path}{query}-{id}-',
+  autosave_restore_when_empty: false,
+  autosave_retention: '2m',
+  image_advtab: true,
+  link_list: [
+    { title: 'My page 1', value: 'https://www.tiny.cloud' },
+    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+  ],
+  image_list: [
+    { title: 'My page 1', value: 'https://www.tiny.cloud' },
+    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+  ],
+  image_class_list: [
+    { title: 'None', value: '' },
+    { title: 'Some class', value: 'class-name' }
+  ],
+  importcss_append: true,
+  file_picker_callback: (callback, value, meta) => {
+    /* Provide file and text for the link dialog */
+    if (meta.filetype === 'file') {
+      callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
+    }
+
+    /* Provide image and alt text for the image dialog */
+    if (meta.filetype === 'image') {
+      callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+    }
+
+    /* Provide alternative source and posted for the media dialog */
+    if (meta.filetype === 'media') {
+      callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+    }
+  },
+  height: 600,
+  image_caption: true,
+  quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+  noneditable_class: 'mceNonEditable',
+  toolbar_mode: 'sliding',
+  contextmenu: 'link image table',
+  // skin: useDarkMode ? 'oxide-dark' : 'oxide',
+  // content_css: useDarkMode ? 'dark' : 'default',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+});
+    // tinymce.init({
+    //   selector: 'textarea#mytextarea',
+    //   plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion',
+    //     editimage_cors_hosts: ['picsum.photos'],
+    //     menubar: 'file edit view insert format tools table help',
+    //     toolbar: "undo redo | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl",
+    //     autosave_ask_before_unload: true,
+    //     autosave_interval: '30s',
+    //     autosave_prefix: '{path}{query}-{id}-',
+    //     autosave_restore_when_empty: false,
+    //     autosave_retention: '2m',
+    //     image_advtab: true,
+    //     link_list: [
+    //         { title: 'My page 1', value: 'https://www.tiny.cloud' },
+    //         { title: 'My page 2', value: 'http://www.moxiecode.com' }
+    //     ],
+    //     image_list: [
+    //         { title: 'My page 1', value: 'https://www.tiny.cloud' },
+    //         { title: 'My page 2', value: 'http://www.moxiecode.com' }
+    //     ],
+    //     image_class_list: [
+    //         { title: 'None', value: '' },
+    //         { title: 'Some class', value: 'class-name' }
+    //     ],
+    //     importcss_append: true,
+    //     file_picker_callback: (callback, value, meta) => {
+    //         /* Provide file and text for the link dialog */
+    //         if (meta.filetype === 'file') {
+    //         callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
+    //         }
+    //
+    // /* Provide image and alt text for the image dialog */
+    //     if (meta.filetype === 'image') {
+    //     callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+    //     }
+    //
+    // /* Provide alternative source and posted for the media dialog */
+    //     if (meta.filetype === 'media') {
+    //     callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+    //     }
+    // },
+    //     height: 600,
+    //     image_caption: true,
+    //     quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+    //     noneditable_class: 'mceNonEditable',
+    //     toolbar_mode: 'sliding',
+    //     contextmenu: 'link image table',
+    //     //   skin: useDarkMode ? 'oxide-dark' : 'oxide',
+    //     //   content_css: useDarkMode ? 'dark' : 'default',
+    //     content_style: 'body { font-family:Helvetica,Arial,sans-serif, Pinar; font-size:16px }'
+    // });
+</script>
+
+
+</body>
+</html>

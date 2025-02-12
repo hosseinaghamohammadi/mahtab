@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Activity 1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+    <style>
+        body{
+            font-family: Vazirmatn;
+        }
+        #main-area{
+            width: 100%;
+            margin-top: 5%;
+            height: 55vw;
+            /*background-color: #00cac5;*/
+        }
+        #main-area-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+        #board{
+            width: 28%;
+            margin: auto;
+            margin-right: 3%;
+        }
+        #board-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            background-color: #171717;
+            border-collapse: collapse;
+            margin: auto;
+            padding: 10px 10px 10px 10px;
+            border-radius: 3px;
+        }
+        .cell{
+            width: 24%;
+            aspect-ratio: calc(1);
+            background-color: #faeacc;
+            border: 1px solid #ba7b00;
+            text-align: center;
+            border-collapse: collapse;
+            margin: auto;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2vw;
+            font-weight: 500;
+        }
+        #activity-desc{
+            width: 40%;
+            margin: auto;
+            margin-left: 3%;
+            color: black;
+            font-size: 1.2vw;
+        }
+        #buttons-wrap{
+            display: flex;
+            flex-direction: row-reverse;
+            margin: auto;
+            margin-top: 5%;
+            width: 20%;
+        }
+        #check-button{
+            display: block;
+            width: 40%;
+            margin: auto;
+            text-align: center;
+            padding: 6px 0px 6px 0px;
+            font-family: Vazirmatn;
+            background-color: #f4ca20;
+            border: 2px solid black;
+            border-radius: 4px;
+            color: black;
+            font-weight: 700;
+            font-size: 1vw;
+        }
+        #reverse{
+            display: block;
+            width: 40%;
+            margin: auto;
+            text-align: center;
+            padding: 6px 0px 6px 0px;
+            font-family: Vazirmatn;
+            background-color: #e8e8e8;
+            border: 2px solid black;
+            border-radius: 4px;
+            color: black;
+            font-weight: 700;
+            font-size: 1vw;
+        }
+        #reverse a{
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div id="main-area">
+    <div id="main-area-wrap">
+        <div id="board">
+            <div id="board-wrap">
+                <div id="cell-1" class="cell">۱</div>
+                <div id="cell-2" class="cell">۲</div>
+                <div id="cell-3" class="cell">۳</div>
+                <div id="cell-4" class="cell">۴</div>
+                <div id="cell-5" class="cell">۵</div>
+                <div id="cell-6" class="cell">۶</div>
+                <div id="cell-7" class="cell">۷</div>
+                <div id="cell-8" class="cell">۸</div>
+                <div id="cell-9" class="cell">۹</div>
+                <div id="cell-10" class="cell">۱۰</div>
+                <div id="cell-11" class="cell">۱۱</div>
+                <div id="cell-12" class="cell">۱۲</div>
+                <div id="cell-13" class="cell">۱۳</div>
+                <div id="cell-14" class="cell">۱۴</div>
+                <div id="cell-15" class="cell">۱۵</div>
+                <div id="cell-16" class="cell">۱۶</div>
+            </div>
+        </div>
+        <div id="activity-desc">
+            <div id="activity-desc-wrap">
+                <h3 dir="rtl">
+                    کتاب‌های نامرتب
+                </h3>
+                <p dir="rtl">
+                    تاسین هر شب قبل از خواب، اتاقش را مرتب می‌کند. یکی از کارهایی که در مرتب کردن اتاق انجام می‌دهد،
+                    مرتب‌کردنِ کتاب‌هایش است. او باید
+                    ۱۶ کتابش را در قفسه‌ی کتاب‌ها به ترتیب بچیند. او در هر طبقه ۴ کتاب می‌گذارد و
+                    از بالا به پایین طبقه‌ها را پر می‌کند.
+                    در جورچین مقابل هر شماره مربوط به یک کتاب است.
+                    <br>
+                    <br>
+                    <strong style="display: inline-block; margin-bottom: 10px">مسئله/چالش:</strong>
+                    <br>
+                    در این فعالیت، شما باید جورچین مقابل را مرتب کنید.
+                    در بالاترین ردیف شماره‌های ۱ تا ۴ به ترتیب از چپ به راست، در ردیف بعدی
+                    شماره‌های ۵ تا ۸ به ترتیب از چپ به راست و باقی شماره‌ها نیز به همین شکل باید قرار گیرند.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="buttons-wrap">
+        <button id="check-button" onclick="check_answer()">بررسی پاسخ</button>
+        <button id="reverse">
+            <a href="/journey">بازگشت</a>
+        </button>
+    </div>
+
+</div>
+
+    <script>
+        Sortable.create(document.getElementById('board-wrap'), {
+            animation: 250,
+
+        });
+
+        function shuffle(){
+            let cells = document.getElementsByClassName('cell')
+            let nums = Array()
+            for (let i = 0; i < cells.length; i++) {
+                nums.push([cells[i], Math.random()])
+            }
+            nums = nums.sort((a, b) => a[1]-b[1])
+            let board = document.getElementById('board-wrap')
+            board.innerHTML = ''
+            for (let i = 0; i < nums.length; i++) {
+                board.appendChild(nums[i][0])
+            }
+        }
+        window.onload = shuffle()
+
+        function getCSRFToken() {
+        let cookieValue = null
+        const name = 'csrftoken'
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';')
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim()
+                // Does this cookie string begin with the csrf token name?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+                    break
+                }
+            }
+        }
+        return cookieValue
+        }
+
+        function check_answer(){
+            let board = document.getElementById('board-wrap')
+            let flag = 1
+            let submission = ''
+            for (let i = 0; i < board.children.length; i++) {
+                let temp = board.children[i].id.substring(5)
+                submission += temp
+                submission += ','
+                if (board.children[i].id.substring(5) === String(i+1)){
+                    flag *= 1
+                } else {
+                    flag *= 0
+                }
+            }
+            console.log(flag)
+            const csrftoken = getCSRFToken()
+            $.ajax({
+                url: 'http://127.0.0.1:8000/submit_event_activity_answer',
+                type: 'POST',
+                headers:{'X-CSRFToken': csrftoken},
+                data:{
+                    result: flag,
+                    type: 'activity',
+                    id: 1,
+                    submission: submission
+                },
+                success: function (data, status){
+                        if (data.message === 'positive'){
+                            let btn = document.getElementById('check-button')
+                            btn.style.backgroundColor = 'forestgreen'
+                            btn.textContent = 'درست'
+                            btn.style.color = 'white'
+                            btn.setAttribute('disabled', 'true')
+                            return
+                        }
+                        if (data.message === 'negative'){
+                            let btn = document.getElementById('check-button')
+                            btn.style.backgroundColor = '#cd0000'
+                            btn.textContent = 'تلاش مجدد'
+                            btn.style.color = 'white'
+                        }
+                    },
+                error: function (error){
+                        console.log('error:', error)
+                    }
+            })
+            return
+        }
+    </script>
+</body>
+</html>

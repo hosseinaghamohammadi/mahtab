@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>مهتاب</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body{
+            margin: 0;
+        }
+        #page{
+            width: 100%;
+            background-color: white;
+            font-family: Vazirmatn;
+        }
+        #page-wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #navbar{
+            width: 100%;
+            height: 80px;
+            background-color: white;
+            font-weight: 900;
+        }
+        #navbar-wrap{
+            width: 92%;
+            height: inherit;
+            background-color: #F2F2F2;
+            box-shadow: 0px 3px 4px rgb(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: row-reverse;
+            color: #404040;
+            padding: 10px 4% 10px 4%;
+        }
+        #orgname{
+            width: 10%;
+            display: flex;
+            flex-direction: row;
+        }
+        #orgname-wrap{
+            width: 70%;
+            font-size: 32px;
+            margin: auto;
+        }
+        #navitems{
+            width: 90%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        #navitems-wrap{
+            width: 30%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        .nav-item{
+            margin: auto 15px;
+        }
+        #content{
+            width: 100%;
+            margin-top: 50px;
+        }
+        #content-wrap{
+            width: 100%;
+        }
+        .row{
+            display: flex;
+            flex-direction: column;
+        }
+        .row-wrap{
+            margin: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        #tasks{
+            width: 75%;
+            margin: auto;
+            background-color: #e5e5e5;
+            padding-top: 1%;
+            font-size: 80%;
+            border-radius: 5px;
+        }
+        #tasks-wrap{
+            width: 75%;
+            margin: auto;
+            border-radius: 5px;
+            padding: 1% 2%;
+        }
+        .task-odd > h2, .task-even > h2{
+            text-align: center;
+        }
+        #specs{
+            width: 19%;
+            padding-top: 5%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+        #specs-wrap{
+            width: 95%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        #grade-difficulty{
+            width: 100%;
+        }
+        #grade-difficulty-wrap{
+            width: 90%;
+            margin: auto;
+            font-size: 12px;
+        }
+        #topics{
+            width: 100%;
+        }
+        #topics-wrap{
+            width: 90%;
+            margin: auto;
+            font-size: 14px;
+        }
+        .task-odd{
+            background-color: #fcfcfc;
+            padding: 15px;
+            border-radius: 5px;
+            border: 5px solid grey;
+        }
+        .task-answer{
+            width: 40%;
+        }
+        .task-answer-wrap{
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        .task-answer-wrap > button{
+            margin: auto;
+            font-family: inherit;
+            font-size: 12px;
+            background-color: #fbe685;
+            border: 2px solid grey;
+            border-radius: 4px;
+        }
+        .task-answer-wrap > input{
+            border: 1px solid black;
+            border-radius: 3px;
+        }
+        #multiple-choice-text-options{
+            width: 100%;
+            /*background-color: #00cac5;*/
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        #multiple-choice-text-options-wrap{
+            width: 60%;
+            /*background-color: #c3c3c3;*/
+            margin-right: 2%;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+<div id="page">
+    <div id="page-wrap">
+        <div id="navbar">
+            <div id="navbar-wrap">
+                <div id="orgname" dir="rtl">
+                    <div id="orgname-wrap">
+                        مهتاب
+                    </div>
+                </div>
+                <div id="navitems">
+                    <div id="navitems-wrap">
+                        <div class="nav-item">
+                            <div class="nav-item-wrap">
+                                بانک مسئله
+                            </div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-item-wrap">
+                                کلاس‌های آموزشی
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="content-wrap">
+                <div id="row1" class="row">
+                    <div id="row1-wrap" class="row-wrap">
+                        <div id="specs">
+                            <div id="specs-wrap">
+                                <div id="grade-difficulty">
+                                    <div id="grade-difficulty-wrap" dir="rtl">
+                                        <span id="grd-diff-content">
+                                            پایهٔ ۱ چالشی - پایهٔ ۲ متوسط - پایهٔ ۳ ساده
+                                        </span>
+                                    </div>
+                                </div>
+                                <hr style="border-color: #aaaaaa99; width: 100%">
+                                <div id="topics">
+                                    <div id="topics-wrap">
+                                        <div class="topic-item" dir="rtl">
+                                            <ul style="margin: 0px">
+                                                <li>الگوریتم</li>
+                                                <li>الگوریتم</li>
+                                                <li>الگوریتم</li>
+                                                <li>الگوریتم</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tasks">
+                            <div id="tasks-wrap">
+                                {% for task in tasks %}
+                                    {% if "input" in task.type %}
+                                        <div class="task-odd">
+                                            <h2 dir="rtl">{{task.name|safe}}</h2>
+                                            {{task.problem_statement|safe}}
+                                            <div class="task-answer">
+                                                <div class="task-answer-wrap">
+                                                    <input type="text" dir="rtl" placeholder="پاسخ خود را وارد کنید" style="font-family: inherit; font-size: 12px; width: 70%">
+                                                    <button>بررسی پاسخ</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="border-color: #dddddd00;">
+                                    {% endif %}
+                                    {% if "multiple choice-text" in task.type %}
+                                        <div id="task-{{task.id}}" class="task-odd multiple-choice-text">
+                                            <h2 dir="rtl">{{task.name|safe}}</h2>
+                                            {{task.problem_statement|safe}}
+                                            <div id="multiple-choice-text-options-{{task.id}}">
+                                                <div id="multiple-choice-text-options-wrap-{{task.id}}" dir="rtl">
+                                                    {{task.text_choices}}
+                                                </div>
+                                            </div>
+                                            <div class="task-answer" id="task-answer-{{task.id}}">
+                                                <div class="task-answer-wrap" id="task-answer-wrap-{{task.id}}">
+<!--                                                    {{task.id}}-->
+                                                    {% if task.id in answered_tasks %}
+                                                    <button dir="rtl" id="check-answer-{{task.id}}" onclick="enableAnswering({{task.id}})" style="background-color: #ecdc98; color: grey; font-style: italic;">
+                                                        می‌خواهم دوباره پاسخ دهم.
+                                                    </button>
+                                                    {% else %}
+                                                    <button id="check-answer-{{task.id}}" onclick="checkAnswer({{task.id}})">
+                                                        بررسی پاسخ
+                                                    </button>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="border-color: #dddddd00;">
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        btns = document.querySelectorAll('button')
+        btn_id_prefixLength = 'check-answer-'.length
+        for (let i = 0; i < btns.length; i++) {
+            let btn = btns[i]
+            if (btn.getAttribute('onclick').includes('enableAnswering')) {
+                let btnID = btn.id.substring(btn_id_prefixLength)
+                let inputs = document.querySelectorAll(`#multiple-choice-text-options-wrap-${btnID} input`)
+                for (let j = 0; j < inputs.length; j++) {
+                    inputs[j].setAttribute('disabled', 'true')
+                }
+            }
+        }
+    }, false)
+
+    function enableAnswering(taskID){
+        let button = document.getElementById(`check-answer-${taskID}`)
+        button.textContent = 'بررسی پاسخ'
+        button.style.backgroundColor = '#fbe685'
+        button.style.border = '2px solid grey'
+        button.setAttribute('onclick', `checkAnswer(${taskID})`)
+        button.removeAttribute('disabled')
+        button.style.color = 'black'
+        button.style.fontWeight = '400'
+        button.style.fontStyle = 'normal'
+
+        let inputs = document.querySelectorAll(`#multiple-choice-text-options-wrap-${taskID} input`)
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].removeAttribute('disabled')
+        }
+    }
+    function getCSRFToken() {
+        let cookieValue = null;
+        const name = 'csrftoken';
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the csrf token name?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function checkAnswer(taskID){
+        let task = document.getElementById(`task-${taskID}`)
+        if(task.classList.contains('multiple-choice-text')){
+            console.log('task type: multiple choice-text')
+            let div_options = document.querySelectorAll(`#task-${taskID} div.mct-option`)
+            let checked_index = []
+            for (let i = 0; i < div_options.length; i++) {
+                if (div_options[i].firstChild.checked){
+                    checked_index.push(i)
+                }
+            }
+            if (checked_index.length === 0){
+                alert('برای این مسئله گزینه‌ای انتخاب نکرده‌اید.')
+                return;
+            }
+            if (checked_index.length === 1){
+                console.log('got it')
+                const csrftoken = getCSRFToken();
+
+                const body = {
+                    'task_id': taskID,
+                    'user_choice': checked_index[0]
+                }
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/submit_problem_answer',
+                    type: 'POST',
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: body,
+                    success: function (data, status){
+                        console.log('post request response')
+                        console.log(data)
+                        console.log(status)
+
+                        if (data.message === 'positive'){
+                            let button = document.getElementById(`check-answer-${taskID}`)
+                            button.textContent = 'صحیح'
+                            button.style.backgroundColor = '#1da21d'
+                            button.style.border = '2px solid #1da21d'
+                            button.setAttribute('onclick', '')
+                            button.style.color = 'white'
+                            button.style.fontWeight = '500'
+                            return
+                        }
+                        if (data.message === 'negative'){
+                            let button = document.getElementById(`check-answer-${taskID}`)
+                            button.textContent = 'نادرست'
+                            button.style.backgroundColor = 'rgb(194, 0, 0)'
+                            button.style.border = '2px solid rgb(194 0 0)'
+                            button.setAttribute('onclick', '')
+                            button.style.color = 'white'
+                            button.style.fontWeight = '600'
+                            return
+                        }
+                    },
+                    error: function (error){
+                        console.log('error:', error)
+                    }
+                })
+                return;
+            }
+            if (checked_index.length > 1){
+                alert('برای این مسئله فقط یک گزینه انتخاب کنید.')
+                return;
+            }
+        }
+    }
+
+    for (let j = 0; j < 15; j++) {
+        let text_options_wrapper = document.getElementById(`multiple-choice-text-options-wrap-${j}`)
+        if (!text_options_wrapper){continue}
+        let options_string = text_options_wrapper.textContent
+        text_options_wrapper.textContent = ''
+
+        let options = options_string.split(',')
+        let indexes = ['الف) ', 'ب) ', 'پ) ', 'ت) ', 'ث) ']
+
+        for (let i = 0; i < options.length; i++) {
+            let option_text = document.createElement('div')
+            option_text.setAttribute('style', 'width:100%;margin: 1px 0px 1px 0px; display:flex; flex-direction:row')
+            option_text.setAttribute('dir', 'rtl')
+            option_text.setAttribute('class', 'mct-option')
+            let option_input = document.createElement('input')
+            option_input.setAttribute('type', 'checkbox')
+            option_input.setAttribute('style', 'width: 18px; height: 18px;')
+            let option_label = document.createElement('label')
+            option_label.textContent = indexes[i] + options[i]
+            option_label.setAttribute('style', 'margin-top: 3px;')
+            option_text.appendChild(option_input)
+            option_text.appendChild(option_label)
+            text_options_wrapper.appendChild(option_text)
+        }
+    }
+
+</script>
+</html>

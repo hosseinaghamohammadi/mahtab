@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <title>ثبت‌نام-ورود</title>
+    <style>
+        body{
+            font-family: Vazirmatn;
+        }
+        #page{
+            width: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            background-image: linear-gradient(50deg, white, white, rgb(180, 247, 255), white, #70d2e1cc, white, white);
+            min-height: 550px;
+            min-width: 800px;
+        }
+        #page-wrap{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        #box{
+            width: 65%;
+            height: 75%;
+            margin: auto;
+            border-radius: 5px;
+            border: 5px solid #009FB7;
+            min-height: 450px;
+            min-width: 700px;
+        }
+        #box-wrap{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+        #left-segment{
+            background-color: #009FB7;
+            width: 40%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        #right-segment{
+            background-color: white;
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #home-link{
+            /*background-color: #e5e87d;*/
+            /*margin: auto;*/
+            /*position: absolute;*/
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
+            /*display: none;*/
+        }
+        #home-link a{
+            color: black;
+            text-decoration: underline;
+        }
+        #right-segment-wrap{
+            width: 45%;
+            height: 65%;
+            background-color: #009FB7;
+            border: 3px solid white;
+            margin: auto;
+            border-radius: 45px;
+            box-shadow: -10px 12px 15px rgba(0, 0, 0, 0.36);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 220px;
+            max-height: 300px;
+            min-width: 170px;
+            /*overflow: scroll;*/
+        }
+        #left-segment img{
+            width: 85%;
+            border-radius: 30px;
+            display: block;
+            margin: auto;
+            position: relative;
+            left: 35%;
+            top: -5%;
+            box-shadow: -15px 20px 20px rgba(0, 0, 0, 0.36);
+            /*max-width: 15vw;*/
+            /*min-width: ;*/
+        }
+        #login-title{
+            font-size: 24px;
+            color: white;
+            margin-top: 10%;
+            font-weight: 600;
+            /*background-color: #e5e87d;*/
+        }
+        form{
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin-right: auto;
+            margin-left: auto;
+            /*background-color: #555555;*/
+            /*overflow: scroll;*/
+        }
+        form label{
+            display: block;
+            font-size: 12px;
+            margin-top: 10px;
+            color: white;
+        }
+        form input{
+            width: 60%;
+            display: block;
+            height: 14px;
+            margin: auto;
+            min-width: 120px;
+            font-size: 11px;
+            /*font-weight: 600;*/
+        }
+        #login-forget-password{
+            width: 60%;
+            color: white;
+            opacity: 85%;
+            display: flex;
+            flex-direction: row-reverse;
+            font-size: 11px;
+            align-items: center;
+            text-align: center;
+            margin-top: 2%;
+            /*background-color: #e5e87d;*/
+            /*margin: 0;*/
+            /*padding-bottom: 5%;*/
+        }
+        #login-forget-password span{
+            margin: auto;
+            display: block;
+            /*width: 60%;*/
+            text-align: center;
+        }
+        #submit-btn{
+            font-family: Vazirmatn;
+            font-size: 12px;
+            width: 60%;
+            min-width: 100px;
+            margin: auto;
+            margin-top: 10px;
+            background-color: #005460;
+            border: 1px solid black;
+            border-radius: 2px;
+            color: white;
+            height: 25px;
+        }
+    </style>
+</head>
+<body>
+<div id="page">
+    <div id="page-wrap">
+        <div id="box">
+            <div id="box-wrap">
+                <div id="left-segment">
+                    <img src="{% static 'images/journey-map.jpg' %}">
+                </div>
+                <div id="right-segment">
+
+                    <div id="right-segment-wrap">
+                        <span id="login-title">عضویت</span>
+                        <form>
+                            <label>شمارهٔ همراه</label>
+                            <input type="text">
+                            <label>رمز عبور</label>
+                            <input type="password">
+                            <label>تکرار رمز عبور</label>
+                            <input type="password">
+                            <button id="submit-btn">شروع سفر ماجراجویانه</button>
+                        </form>
+                        <div id="login-forget-password">
+                            <span>
+                                حساب کاربری دارید؟
+                                <a>
+                                    ورود
+                                </a>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div id="home-link">
+                        <a href="/homepage/">بازگشت به صفحه‌ی اصلی</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

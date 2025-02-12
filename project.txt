@@ -1,0 +1,40 @@
+
+
+Big TO DOs:
+    1. logging
+    2. url handling
+    3. error management
+
+
+Small Ones:
+    1. input disabling
+    2.
+
+
+usecase 1:
+    the user goes to filtering tasks page. there the user finds ---all the problems--- with some specs
+    on the right.
+
+usecase 2:
+    the user can filter the problems on this page.
+
+usecase 3:
+    the user only after setting some filters can open the selected tasks on whole task page.
+
+usecase 4:
+    on this page the user can view the problems he has not answered less than a week before.
+
+usecase 5:
+    on this page the user can submit answers for ---multiple choice text--- tasks and see the
+    result. the attempt is saved with its timestamp to check the recently attempted problems.
+
+
+concerns:
+    1. page view in different sizes
+    2. adding questions
+    3. url handling
+    4. error handling
+    5. authentication handling
+
+usecase 6:
+    1. 

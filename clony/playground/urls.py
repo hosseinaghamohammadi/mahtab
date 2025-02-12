@@ -1,0 +1,25 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path("ins/", views.t),
+    path("req/", views.create_problem),
+    path("task_bank/", views.problem_bank),
+    path("filter_tasks/", views.filter_tasks),
+    path("cs_classes/", views.cs_classes),
+    path("submit_problem_answer/", views.submit_problem_answer),
+    path("submit_activity_answer/", views.submit_event_activity_answer),
+    path("homepage/", views.public_homepage, name="home"),
+    path("adventure_in_close_land/", views.event_homepage),
+    path("api/journey-details/", views.journey_details),
+    path("journey/", views.journey_page),
+    path("adventure_in_close_land/problem/<int:problem_index>/", views.problem_page),
+    path("adventure_in_close_land/activity/<int:activity_index>/", views.activity_page),
+    path("submit_event_problem_answer", views.submit_event_problem_answer),
+    path("submit_event_activity_answer", views.submit_event_activity_answer),
+    path("login/", views.login_page, name="login"),
+    path("signup/", views.signup_page, name="signup"),
+    # path("", views.login_page),
+    # path("<path:p>/", views.not_found),
+]
