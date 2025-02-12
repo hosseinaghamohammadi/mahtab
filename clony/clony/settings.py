@@ -26,8 +26,11 @@ SECRET_KEY = 'django-insecure-#yq!s5ze685mat0sdp^%xip8vg&9)p3kp=c+q-$$gpt$gbek+*
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
+    # '127.0.0.1',
+    'mahtab.org',
+    'www.mahtab.org'
 ]
+CSRF_TRUSTED_ORIGINS = ['https://mahtab.org']
 
 
 # Application definition
@@ -137,5 +140,5 @@ AUTH_USER_MODEL = 'playground.User'
 LOGIN_REDIRECT_URL = "home"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
-LOGOUT_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/homepage/"
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
