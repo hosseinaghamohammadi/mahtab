@@ -2,34 +2,32 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import get_user_model
 from django import forms
+from .models import Student
 
 
 class SignUpFrom(UserCreationForm):
     password1 = forms.CharField(
-        label='گذرواژه',
-        strip=False,
-        widget=forms.PasswordInput(attrs={
-            'dir': 'ltr'
-        })
-    )
+            label='گذرواژه',
+            strip=False,
+            widget=forms.PasswordInput(attrs={
+                'dir': 'ltr'
+            })
+        )
     password2 = forms.CharField(
-        label='تکرار گذرواژه',
-        strip=False,
-        widget = forms.PasswordInput(attrs={
-            'dir': 'ltr'
-        })
-    )
+            label='تکرار گذرواژه',
+            strip=False,
+            widget = forms.PasswordInput(attrs={
+                'dir': 'ltr'
+            })
+        )
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = (
-            'username',
-        )
+                'username',
+            )
         labels = {
-            'username': 'شماره‌ی تلفن همراه',
-        }
-        # widgets = {
-        #     'username': forms.CharField(attrs={'dir': 'ltr'})
-        # }
+                'username': 'شماره‌ی تلفن همراه',
+            }
     
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
@@ -41,6 +39,9 @@ class SignUpFrom(UserCreationForm):
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit)
         user.save()
+        student = Student(user=user)
+
+        return user
 
 
 class LogInForm(AuthenticationForm):

@@ -16,9 +16,9 @@ class Admin(User):
     ))
 
 
-class Student(User):
+class Student(models.Model):
     # username, first_name, last_name, email, password, phone_number
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE, parent_link=True)
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE, primary_key=True)
     date_of_birth = models.DateField(blank=True, null=True)
     grade = models.IntegerField(default=0, null=True, blank=True)
     coins = models.IntegerField(default=0, null=True, blank=True)
@@ -30,7 +30,7 @@ class Student(User):
     id_number = models.CharField(max_length=20, null=True, blank=True)
     province = models.CharField(max_length=100, null=True, blank=True)
 
-    note = models.CharField(max_length=2000, null=True, blank=True)
+    note = models.TextField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Student'

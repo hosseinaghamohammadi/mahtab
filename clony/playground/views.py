@@ -452,7 +452,6 @@ def signup_page(request):
                 # print(username, raw_password)
                 user = authenticate(username=username, password=raw_password)
                 if user:
-                    user.phone_number = username
                     user.save()
                     auth_login(request, user)
                     return redirect('/adventure_in_close_land/')

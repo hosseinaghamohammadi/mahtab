@@ -21,7 +21,7 @@ from .models import (
 class StudentAdmin(admin.ModelAdmin):
     model = Student
     extra = 2
-    list_display = ['username', 'province', 'last_name', 'first_name', 'email', 'date_of_birth']
+    list_display = ['user__username', 'province', 'user__last_name', 'user__first_name', 'user__email', 'date_of_birth']
     list_filter = ['province', 'date_of_birth']
     # search_fields = ('user', 'dob', 'public_token', 'access_token', 'item_id', )
     # ordering = ('user', )
