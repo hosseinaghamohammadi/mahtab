@@ -202,6 +202,7 @@ def submit_activity_answer(request):
 
 
 def get_progress(user):
+    print('started')
     stations = Station.objects.filter(event__name__contains='1403 Winter').order_by('order')
 
     solved_stations = []
@@ -256,6 +257,7 @@ def get_progress(user):
                     next_activity = (i, sa.activity)
                     break
             break
+    
     return solved_stations, current_station, next_problem, next_activity
 
 
@@ -398,7 +400,9 @@ def journey_details(request):
 
     # serializing the current station
     current_station_serialized = StationSerializer(current_station).data
-
+    # f = open('t.txt', 'w', encoding='utf-8')
+    # f.write(current_station, next_problem, next_activity, solved_stations)
+    # f.close()
     return JsonResponse({'current_station': current_station_serialized,
                          'next_problem_index': next_problem[0] if next_problem else -1,
                          'next_activity_index': next_activity[0] if next_activity else -1,
@@ -472,3 +476,7 @@ def logout_receiver(request):
 def empty_redirect(request):
     if request.method == 'GET':
         return redirect('/homepage')
+
+
+def small_dimensions(request):
+    return render(request, 'small-dimensions.html')

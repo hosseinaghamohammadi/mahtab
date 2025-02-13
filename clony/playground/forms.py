@@ -60,3 +60,4 @@ class LogInForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(AuthenticationForm, self).__init__(*args, **kwargs)
         self.fields['username'].label = 'شماره‌ی تلفن همراه'
+        self.fields['username'].widget.attrs = {'dir': 'ltr'}

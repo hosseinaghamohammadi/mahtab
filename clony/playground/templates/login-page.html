@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     {% load static %}
     <title>ثبت‌نام-ورود</title>
     <style>
@@ -112,7 +113,7 @@
         form input{
             width: 60%;
             display: block;
-            height: 2vh;
+            height: 14px;
             margin: auto;
             min-width: 120px;
         }
@@ -175,8 +176,10 @@
                             <button id="submit-btn" type="submit">ادامهٔ سفر ماجراجویانه</button>
                         </form>
                         <div id="login-forget-password">
-                            <span>عضویت</span>
-                            <span>فراموشی رمز عبور</span>
+                            <span>
+                                <a href="/signup" style="text-decoration: none; color: inherit;">عضویت</a>
+                            </span>
+                            <!-- <span>فراموشی رمز عبور</span> -->
                         </div>
                     </div>
                 </div>
