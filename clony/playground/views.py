@@ -19,6 +19,11 @@ from .models import (Student,
                      EventAttempt,
                      )
 from .serializers import StationSerializer
+from .forms import UserCreationForm, SignUpFrom, LogInForm
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
+from django.contrib.sessions.models import Session
 
 filter_mapping_db_to_template = {
     'hard': 'جاافتاده',
@@ -409,9 +414,23 @@ def not_found(request, p):
 def login_page(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
-            return redirect('/adventure_in_close_land/')
+            return redirect('/homepage')
         else:
-            return render(request, 'login-page.html')
+            form = LogInForm()
+            return render(request, 'login-page.html', {'form': form})
+    elif request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            auth_login(request, user)
+            request.session['username'] = username
+            request.session.save()
+            return render(request, 'homepage.html', {'user': user})
+        else:
+            return render(request, 'login-page.html', {'login_error': 'wrong username or password.'})
+    else:
+        return HttpResponse('request method is not valid')
 
 
 def signup_page(request):
@@ -419,4 +438,38 @@ def signup_page(request):
         if request.user.is_authenticated:
             return redirect('/adventure_in_close_land/')
         else:
-            return render(request, 'signup-page.html')
+            form = SignUpFrom()
+            return render(request, 'signup-page.html', {'form': form})
+    elif request.method == 'POST':
+        if request.user.is_authenticated:
+            return redirect('/adventure_in_close_land')
+        else:
+            form = SignUpFrom(request.POST)
+            if form.is_valid():
+                form.save()
+                username = form.cleaned_data.get('username')
+                raw_password = form.cleaned_data.get('password1')
+                # print(username, raw_password)
+                user = authenticate(username=username, password=raw_password)
+                if user:
+                    user.phone_number = username
+                    user.save()
+                    auth_login(request, user)
+                    return redirect('/adventure_in_close_land/')
+                else:
+                    return HttpResponse('no user error!')
+            else:
+                return HttpResponse(form.error_messages)
+    else:
+        return HttpResponse('request method is not valid')
+
+
+def logout_receiver(request):
+    auth_logout(request)
+    Session.objects.filter(session_key=request.session.session_key).delete()
+    return redirect('/')
+
+
+def empty_redirect(request):
+    if request.method == 'GET':
+        return redirect('/homepage')

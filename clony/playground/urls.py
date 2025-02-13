@@ -20,6 +20,7 @@ urlpatterns = [
     path("submit_event_activity_answer", views.submit_event_activity_answer),
     path("login/", views.login_page, name="login"),
     path("signup/", views.signup_page, name="signup"),
-    # path("", views.login_page),
-    # path("<path:p>/", views.not_found),
+    path("logout/", views.logout_receiver),
+    path("", views.empty_redirect),
 ]
+

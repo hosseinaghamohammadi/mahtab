@@ -159,12 +159,20 @@
                 <div id="right-segment">
                     <div id="right-segment-wrap">
                         <span id="login-title">ورود</span>
-                        <form>
-                            <label>شمارهٔ همراه</label>
+                        <form method="post" dir="rtl">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {% for error in field.errors %}
+                                    <p style="color: red;">{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                            <!-- <label>شمارهٔ همراه</label>
                             <input type="text">
                             <label>رمز عبور</label>
-                            <input type="text">
-                            <button id="submit-btn">ادامهٔ سفر ماجراجویانه</button>
+                            <input type="text"> -->
+                            <button id="submit-btn" type="submit">ادامهٔ سفر ماجراجویانه</button>
                         </form>
                         <div id="login-forget-password">
                             <span>عضویت</span>

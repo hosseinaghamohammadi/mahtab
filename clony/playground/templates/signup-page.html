@@ -177,19 +177,28 @@
 
                     <div id="right-segment-wrap">
                         <span id="login-title">عضویت</span>
-                        <form>
-                            <label>شمارهٔ همراه</label>
+                        <form method="post" dir="rtl">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {% for error in field.errors %}
+                                    <p style="color: red;">{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+
+                            <!-- <label>شمارهٔ همراه</label>
                             <input type="text">
                             <label>رمز عبور</label>
                             <input type="password">
                             <label>تکرار رمز عبور</label>
-                            <input type="password">
-                            <button id="submit-btn">شروع سفر ماجراجویانه</button>
+                            <input type="password"> -->
+                            <button id="submit-btn" type="submit">شروع سفر ماجراجویانه</button>
                         </form>
                         <div id="login-forget-password">
                             <span>
                                 حساب کاربری دارید؟
-                                <a>
+                                <a href="/login">
                                     ورود
                                 </a>
                             </span>
