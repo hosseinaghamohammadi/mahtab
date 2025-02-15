@@ -95,6 +95,12 @@
             color: black;
             font-weight: 700;
         }
+        #reverse a{
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -145,9 +151,7 @@
     <div id="buttons-wrap">
         <button id="check-button" onclick="check_answer()">بررسی پاسخ</button>
         <button id="reverse">
-            <a href="/journey">
-                بازگشت
-            </a>
+            <a href="/journey">بازگشت</a>
         </button>
     </div>
 
@@ -176,19 +180,20 @@
             return cookieValue
         }
 
+        String.prototype.toIndiaDigits= function(){
+             let id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+             return this.replace(/[0-9]/g, function(w){
+              return id[+w]
+             });
+        }
+
+
 
         function shuffle(){
             let cells = document.getElementsByClassName('cell')
             let nums = Array()
-            let values = Array()
             for (let i = 0; i < cells.length; i++) {
-                values.push(Math.floor(Math.random()*1000))
-            }
-            values.sort((a, b) => a-b)
-            for (let i = 0; i < cells.length; i++) {
-                cells[i].children[0].textContent = String(values[i])
-            }
-            for (let i = 0; i < cells.length; i++) {
+                cells[i].children[0].textContent = String(i+1+43).toIndiaDigits()
                 nums.push([cells[i], Math.random()])
             }
             nums = nums.sort((a, b) => a[1]-b[1])
@@ -214,6 +219,7 @@
                 }
             }
             console.log(flag)
+
             const csrftoken = getCSRFToken()
             $.ajax({
                 url: 'https://mahtab.org/submit_event_activity_answer',

@@ -101,7 +101,16 @@ def check_activity_3(request):
 
 
 def check_activity_4(request):
-    pass
+    challenge_type = request.POST['type']
+    result = request.POST['result']
+    received_id = request.POST['id']
+    submission = request.POST['submission']
+    if challenge_type == 'activity':
+        if received_id == '4':
+            if result == '1':
+                return True
+            else:
+                return False
 
 
 def check_activity_5(request):

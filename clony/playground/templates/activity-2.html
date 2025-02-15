@@ -193,7 +193,6 @@
             let cells = document.getElementsByClassName('cell')
             let nums = Array()
             for (let i = 0; i < cells.length; i++) {
-                cells[i].children[0].textContent = String(i+1+43).toIndiaDigits()
                 nums.push([cells[i], Math.random()])
             }
             nums = nums.sort((a, b) => a[1]-b[1])
