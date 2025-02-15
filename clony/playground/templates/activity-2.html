@@ -180,10 +180,20 @@
             return cookieValue
         }
 
+        String.prototype.toIndiaDigits= function(){
+             let id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+             return this.replace(/[0-9]/g, function(w){
+              return id[+w]
+             });
+        }
+
+
+
         function shuffle(){
             let cells = document.getElementsByClassName('cell')
             let nums = Array()
             for (let i = 0; i < cells.length; i++) {
+                cells[i].children[0].textContent = String(i+1+43).toIndiaDigits()
                 nums.push([cells[i], Math.random()])
             }
             nums = nums.sort((a, b) => a[1]-b[1])
