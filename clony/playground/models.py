@@ -125,6 +125,8 @@ class Station(models.Model):
 
     order = models.PositiveIntegerField(default=0)
 
+    release_date = models.DateTimeField(blank=True, null=True)
+
     def __str__(self):
         return self.name
 
