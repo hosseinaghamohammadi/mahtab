@@ -247,7 +247,6 @@ def submit_activity_answer(request):
 
 
 def get_progress(user):
-    print('started')
     stations = Station.objects.filter(event__name__contains='1403 Winter').order_by('order')
 
     solved_stations = []
@@ -258,6 +257,9 @@ def get_progress(user):
     for k, station in enumerate(stations):
         problems = StationProblem.objects.filter(station=station).order_by('order')
         activities = StationInteractiveActivity.objects.filter(station=station).order_by('order')
+
+        if station.release_date > timezone.now():
+            continue
 
         all_problems_solved = all(
             EventAttempt.objects.filter(
@@ -304,7 +306,7 @@ def get_progress(user):
                     break
             break
     
-    return solved_stations, current_station, next_problem, next_activity, next_station
+    return solved_stations, current_station, next_problem, next_activity
 
 
 # get request
@@ -450,9 +452,10 @@ def journey_details(request):
     for s in solved_stations:
         solved_stations_serialized.append(StationSerializer(s).data)
 
+    print(current_station)
     # serializing the current station
     current_station_serialized = StationSerializer(current_station).data
-    
+    print(current_station_serialized)
     # f = open('t.txt', 'w', encoding='utf-8')
     # f.write(current_station, next_problem, next_activity, solved_stations)
     # f.close()

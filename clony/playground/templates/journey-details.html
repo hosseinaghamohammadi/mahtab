@@ -906,22 +906,16 @@
                 'X-CSRFToken': csrftoken
             },
             success: function (data) {
-                // console.log('here')
-                console.log(data['current_station'])
-                console.log(data['next_problem_index'] === -1)
-                console.log(data['next_activity_index'])
-                console.log(data['solved_stations'])
-                console.log(data['next_station'])
-
-                addStations(data['solved_stations'])
+                if (Boolean(data['solved_stations'][0].name)){
+                    addStations(data['solved_stations'])
+                }
                 updateTimeline(data['solved_stations'])
-                addCurrentStation(data['current_station'], data['next_problem_index'], data['next_activity_index'])
+                if (Boolean(data['current_station'].name)){
+                    addCurrentStation(data['current_station'], data['next_problem_index'], data['next_activity_index'])
+                }
                 addNextProblemLink(data['next_problem_index'])
                 addNextActivityLink(data['next_activity_index'])
             },
-            // error: function(){
-            //     console.log('failed!')
-            // }
         })
     }
 
