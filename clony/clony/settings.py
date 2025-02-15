@@ -123,11 +123,11 @@ USE_TZ = True
 
 # STATIC_URL = 'static/'
 
-STATIC_ROOT = 'playground/static'
-STATIC_URL = '/playground/static/'
+STATIC_ROOT = '/root/event-demo/mahtab/clony/playground/static/'
+STATIC_URL = 'static/'
 
 MEDIA_ROOT = 'playground/media'
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

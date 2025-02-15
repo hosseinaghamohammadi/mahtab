@@ -15,7 +15,7 @@
 
 
 
-        @media (max-width: 1100px) or (max-height: 500px){
+        @media (max-width: 1000px) or (max-height: 400px){
             #page-alt{
                 display: flex;
             }
@@ -24,7 +24,7 @@
             }
         }
         
-        @media (min-width: 1101px) and (min-height: 501px){
+        @media (min-width: 1001px) and (min-height: 401px){
             #page-alt{
                 display: none;
             }
@@ -67,11 +67,13 @@
             width: 100%;
             background-color: white;
             font-family: Vazirmatn;
+            min-height: 92vh;
         }
         #page-wrap{
             width: 100%;
             display: flex;
             flex-direction: column;
+            min-height: 92vh;
         }
         #navbar{
             width: 100%;
@@ -119,7 +121,7 @@
         #content{
             width: 100%;
             /*aspect-ratio: 1.8;*/
-            height: 50vw;
+            min-height: 92vh;
             margin-top: 20px;
             background-image: linear-gradient(45deg, rgba(0, 159, 183, 0.3), rgba(0, 159, 183, 0.05));
         }
@@ -127,7 +129,7 @@
             width: 100%;
             position: relative;
             /*background-color: #07ba07;*/
-            padding: 18% 0% 18% 0%;
+            /* padding: 18% 0% 18% 0%; */
             /*top: 6%;*/
 
         }
@@ -135,7 +137,7 @@
             width: 25%;
             position: absolute;
             background-color: rgba(0, 159, 183, 0.6);
-            top: 15%;
+            top: 10vh;
             left: 12%;
             aspect-ratio: 0.9;
             border-radius: 5px;
@@ -199,7 +201,7 @@
         #sign{
             width: 50%;
             position: absolute;
-            top: 30px;
+            top: max(30px, 10vh);
             left: 43%;
             display: flex;
             flex-direction: column;
