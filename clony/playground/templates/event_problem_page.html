@@ -257,7 +257,7 @@
                                                     </button>
                                                     {% endif %}
                                                     <button id="reverse">
-                                                        <a>بازگشت</a>
+                                                        <a href="/journey">بازگشت</a>
                                                     </button>
                                                 </div>
                                             </div>
@@ -350,7 +350,7 @@
                     'user_choice': checked_index[0]
                 }
                 $.ajax({
-                    url: 'http://127.0.0.1:8000/submit_event_problem_answer',
+                    url: 'https://mahtab.org/submit_event_problem_answer',
                     type: 'POST',
                     headers: {'X-CSRFToken': csrftoken},
                     data: body,

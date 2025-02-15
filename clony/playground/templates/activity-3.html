@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
-    <title>Activity 3</title>
+    <title>Activity 4</title>
     <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
     <style>
         body{
@@ -94,12 +94,6 @@
             color: black;
             font-weight: 700;
         }
-        #reverse a{
-            display: block;
-            width: 100%;
-            text-decoration: none;
-            color: black;
-        }
     </style>
 </head>
 <body>
@@ -149,9 +143,7 @@
     </div>
     <div id="buttons-wrap">
         <button id="check-button" onclick="check_answer()">بررسی پاسخ</button>
-        <button id="reverse">
-            <a href="/journey">بازگشت</a>
-        </button>
+        <button id="reverse">بازگشت</button>
     </div>
 
 </div>
@@ -165,6 +157,14 @@
         function shuffle(){
             let cells = document.getElementsByClassName('cell')
             let nums = Array()
+            let values = Array()
+            for (let i = 0; i < cells.length; i++) {
+                values.push(Math.floor(Math.random()*1000))
+            }
+            values.sort((a, b) => a-b)
+            for (let i = 0; i < cells.length; i++) {
+                cells[i].children[0].textContent = String(values[i])
+            }
             for (let i = 0; i < cells.length; i++) {
                 nums.push([cells[i], Math.random()])
             }
@@ -187,7 +187,6 @@
                     flag *= 0
                 }
             }
-            console.log(flag)
             if (flag === 1){
                 let btn = document.getElementById('check-button')
                 btn.style.backgroundColor = 'forestgreen'

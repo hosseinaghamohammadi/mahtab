@@ -75,6 +75,9 @@ class Problem(models.Model):
 
     note = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return str(self.pk) + ' - ' + self.name
+
 
 class InteractiveActivity(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
@@ -86,6 +89,9 @@ class InteractiveActivity(models.Model):
     html_file_name = models.CharField(max_length=200, blank=True, null=True, unique=True)
 
     note = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return str(self.pk) + ' - ' + self.name
 
 
 class StationProblem(models.Model):

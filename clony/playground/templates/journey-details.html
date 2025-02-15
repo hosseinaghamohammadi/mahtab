@@ -707,7 +707,7 @@
                 statusColorSign.setAttribute('style', 'margin-left: 2%; width: 20px; border-radius: 50%; aspect-ratio: 1; background-color: #32cd32; display: inline-block')
 
                 let strong = document.createElement('strong')
-                strong.textContent = `مسئله‌ی ${engToFarsiDigits[j + 1]}: ‌ `
+                strong.textContent = `مسئله‌ی ${engToFarsiDigits[j + 1]}: ‌ ` + solved_stations[i]['problems'][j]['problem']['name']
 
                 stationProblemItemRow.appendChild(statusColorSign)
                 stationProblemItemRow.appendChild(strong)
@@ -900,7 +900,7 @@
         const csrftoken = getCSRFToken();
         // console.log(csrftoken)
         $.ajax({
-            url: 'http://127.0.0.1:8000/api/journey-details',
+            url: 'https://mahtab.org/api/journey-details',
             type: 'GET',
             headers: {
                 'X-CSRFToken': csrftoken

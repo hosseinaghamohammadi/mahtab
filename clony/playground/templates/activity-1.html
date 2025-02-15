@@ -211,7 +211,7 @@
             console.log(flag)
             const csrftoken = getCSRFToken()
             $.ajax({
-                url: 'http://127.0.0.1:8000/submit_event_activity_answer',
+                url: 'https://mahtab.org/submit_event_activity_answer',
                 type: 'POST',
                 headers:{'X-CSRFToken': csrftoken},
                 data:{
