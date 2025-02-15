@@ -255,9 +255,7 @@ def get_progress(user):
     next_problem = None
     next_activity = None
 
-    next_station = None
-
-    for i, station in enumerate(stations):
+    for k, station in enumerate(stations):
         problems = StationProblem.objects.filter(station=station).order_by('order')
         activities = StationInteractiveActivity.objects.filter(station=station).order_by('order')
 
@@ -285,7 +283,7 @@ def get_progress(user):
             solved_stations.append(station)
         else:
             current_station = station
-            next_station = stations[i + 1] if i + 1 < len(stations) else None
+            
             for i, sp in enumerate(problems):
                 if not EventAttempt.objects.filter(
                         participant=user,
@@ -385,7 +383,7 @@ def submit_event_activity_answer(request):
         if check_activity:
             is_correct = check_activity(request)
 
-            solved_stations, current_station, next_problem, next_activity, next_station = get_progress(request.user)
+            solved_stations, current_station, next_problem, next_activity = get_progress(request.user)
 
             attempt = EventAttempt(
                 participant=user,
@@ -419,7 +417,7 @@ def submit_event_activity_answer(request):
 @login_required
 def problem_page(request, problem_index):
     if request.method == 'GET':
-        solved_stations, current_station, next_problem, next_activity, next_station = get_progress(request.user)
+        solved_stations, current_station, next_problem, next_activity = get_progress(request.user)
         station_problems = StationProblem.objects.filter(station=current_station).order_by('order')
         problem = Problem.objects.get(id=station_problems[problem_index].problem.id)
         return render(request, 'event_problem_page.html', {'tasks': [problem], 'answered_tasks': []})
@@ -428,7 +426,7 @@ def problem_page(request, problem_index):
 @login_required
 def activity_page(request, activity_index):
     if request.method == 'GET':
-        solved_stations, current_station, next_problem, next_activity, next_station = get_progress(request.user)
+        solved_stations, current_station, next_problem, next_activity = get_progress(request.user)
         station_activities = StationInteractiveActivity.objects.filter(station=current_station).order_by('order')
         activity = InteractiveActivity.objects.get(id=station_activities[activity_index].activity.id)
         print(activity)
@@ -445,7 +443,7 @@ def journey_details(request):
     # current_station, solved_stations, next_problem_index
 
     user = request.user
-    solved_stations, current_station, next_problem, next_activity, next_station = get_progress(user)
+    solved_stations, current_station, next_problem, next_activity = get_progress(user)
 
     # serializing solved stations and append them to a list
     solved_stations_serialized = []
@@ -454,7 +452,7 @@ def journey_details(request):
 
     # serializing the current station
     current_station_serialized = StationSerializer(current_station).data
-    next_station_serialized = StationSerializer(next_station).data
+    
     # f = open('t.txt', 'w', encoding='utf-8')
     # f.write(current_station, next_problem, next_activity, solved_stations)
     # f.close()
@@ -462,7 +460,6 @@ def journey_details(request):
                          'next_problem_index': next_problem[0] if next_problem else -1,
                          'next_activity_index': next_activity[0] if next_activity else -1,
                          'solved_stations': solved_stations_serialized,
-                         'next_station': next_station_serialized
                          })
 
 
