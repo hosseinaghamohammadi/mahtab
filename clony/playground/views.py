@@ -64,10 +64,10 @@ filter_mapping_template_to_db = {
 def check_activity_1(request):
     challenge_type = request.POST['type']
     result = request.POST['result']
-    id = request.POST['id']
+    received_id = request.POST['id']
     submission = request.POST['submission']
     if challenge_type == 'activity':
-        if id == '1':
+        if received_id == '1':
             if result == '1':
                 return True
             else:
@@ -77,21 +77,46 @@ def check_activity_1(request):
 def check_activity_2(request):
     challenge_type = request.POST['type']
     result = request.POST['result']
-    id = request.POST['id']
+    received_id = request.POST['id']
     submission = request.POST['submission']
     if challenge_type == 'activity':
-        if id == '2':
+        if received_id == '2':
             if result == '1':
                 return True
             else:
                 return False
 
 
-def check_activity_3(submission):
+def check_activity_3(request):
+    challenge_type = request.POST['type']
+    result = request.POST['result']
+    received_id = request.POST['id']
+    submission = request.POST['submission']
+    if challenge_type == 'activity':
+        if received_id == '3':
+            if result == '1':
+                return True
+            else:
+                return False
+
+
+def check_activity_4(request):
     pass
 
 
-def check_activity_4(submission):
+def check_activity_5(request):
+    pass
+
+
+def check_activity_6(request):
+    pass
+
+
+def check_activity_7(request):
+    pass
+
+
+def check_activity_8(request):
     pass
 
 
@@ -99,7 +124,11 @@ activity_submission_check = {
     '1': check_activity_1,
     '2': check_activity_2,
     '3': check_activity_3,
-    '4': check_activity_4
+    '4': check_activity_4,
+    '5': check_activity_5,
+    '6': check_activity_6,
+    '7': check_activity_7,
+    '8': check_activity_8,
 }
 
 
