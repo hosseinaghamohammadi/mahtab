@@ -74,10 +74,17 @@ def check_activity_1(request):
                 return False
 
 
-
-
-def check_activity_2(submission):
-    pass
+def check_activity_2(request):
+    challenge_type = request.POST['type']
+    result = request.POST['result']
+    id = request.POST['id']
+    submission = request.POST['submission']
+    if challenge_type == 'activity':
+        if id == '2':
+            if result == '1':
+                return True
+            else:
+                return False
 
 
 def check_activity_3(submission):
@@ -328,20 +335,26 @@ def submit_event_problem_answer(request):
 @login_required
 def submit_event_activity_answer(request):
     user = request.user
-    print('sent!')
     if request.method == 'POST':
         activity_id = int(request.POST['id'])
         user_submission = request.POST['submission']
 
         check_activity = activity_submission_check.get(str(activity_id))
-        print('got checker')
+
         if check_activity:
             is_correct = check_activity(request)
-            print('checked')
+
+            solved_stations, current_station, next_problem, next_activity = get_progress(request.user)
+
             attempt = EventAttempt(
                 participant=user,
-                station=StationInteractiveActivity.objects.get(activity__id=activity_id).station,
-                interactive_activity=InteractiveActivity.objects.get(id=activity_id),
+                # according to next line, each activity has to be assigned to one and only one station
+                # it is changed so that you can assign each activity to multiple stations
+                station=current_station,
+                # next line is changed in a way that if the activity is not associated with the station, it behaves
+                # like a problem
+                interactive_activity=StationInteractiveActivity.objects.get(station=current_station, activity__id=activity_id).activity,
+                # InteractiveActivity.objects.get(id=activity_id),
                 problem=None,
                 is_problem=False,
                 is_correct=is_correct,
