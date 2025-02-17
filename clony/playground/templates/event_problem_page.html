@@ -182,7 +182,7 @@
         }
         #reverse a{
             display: block;
-            width: 100%;
+            /* width: 100%; */
             text-decoration: none;
             color: black;
             margin: auto;
@@ -371,10 +371,10 @@
                         }
                         if (data.message === 'negative'){
                             let button = document.getElementById(`check-answer-${taskID}`)
-                            button.textContent = 'نادرست'
+                            button.textContent = 'دوباره بررسی کن'
                             button.style.backgroundColor = 'rgb(194, 0, 0)'
                             button.style.border = '2px solid rgb(194 0 0)'
-                            button.setAttribute('onclick', '')
+                            // button.setAttribute('onclick', '')
                             button.style.color = 'white'
                             button.style.fontWeight = '600'
                             return

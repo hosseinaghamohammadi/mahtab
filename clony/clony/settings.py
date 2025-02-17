@@ -30,7 +30,10 @@ ALLOWED_HOSTS = [
     'mahtab.org',
     'www.mahtab.org'
 ]
-CSRF_TRUSTED_ORIGINS = ['https://mahtab.org']
+CSRF_TRUSTED_ORIGINS = ['https://mahtab.org',
+                        'http://mahtab.org',
+                        'http://www.mahtab.org',
+                        'https://www.mahtab.org']
 
 
 # Application definition
@@ -122,6 +125,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 # STATIC_URL = 'static/'
+
+
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
 
 STATIC_ROOT = '/root/event-demo/mahtab/clony/playground/static/'
 STATIC_URL = 'static/'

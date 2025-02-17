@@ -876,7 +876,7 @@
             return
         }
         let el = document.getElementById('next-p-link')
-        el.setAttribute('href', `/adventure_in_close_land/problem/${next_problem_index}`)
+        el.setAttribute('href', `/adventure/problem/${next_problem_index}`)
     }
 
     function addNextActivityLink(next_activity_index){
@@ -892,7 +892,7 @@
             return
         }
         let el = document.getElementById('next-a-link')
-        el.setAttribute('href', `/adventure_in_close_land/activity/${next_activity_index}`)
+        el.setAttribute('href', `/adventure/activity/${next_activity_index}`)
     }
 
     function retrieve_data() {
@@ -906,7 +906,7 @@
                 'X-CSRFToken': csrftoken
             },
             success: function (data) {
-                if (Boolean(data['solved_stations'][0].name)){
+                if (data['solved_stations'].length > 0){
                     addStations(data['solved_stations'])
                 }
                 updateTimeline(data['solved_stations'])
@@ -923,7 +923,7 @@
 
 </script>
 <audio loop id="123">
-    <source src="{% static 'media/homepage-audio.mp3' %}" type="audio/mpeg"/>
+    <source src="{% static '/audios/homepage-audio.mp3' %}" type="audio/mpeg"/>
 </audio>
 
 <script>

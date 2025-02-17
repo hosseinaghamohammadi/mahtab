@@ -324,7 +324,7 @@ def event_homepage(request):
 def public_homepage(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
-            return redirect('/adventure_in_close_land/')
+            return redirect('/adventure/')
         else:
             return render(request, 'public_homepage.html')
     else:
@@ -452,10 +452,10 @@ def journey_details(request):
     for s in solved_stations:
         solved_stations_serialized.append(StationSerializer(s).data)
 
-    print(current_station)
+    # print(current_station)
     # serializing the current station
     current_station_serialized = StationSerializer(current_station).data
-    print(current_station_serialized)
+    # print(current_station_serialized)
     # f = open('t.txt', 'w', encoding='utf-8')
     # f.write(current_station, next_problem, next_activity, solved_stations)
     # f.close()
@@ -496,13 +496,13 @@ def login_page(request):
 def signup_page(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
-            return redirect('/adventure_in_close_land/')
+            return redirect('/adventure/')
         else:
             form = SignUpFrom()
             return render(request, 'signup-page.html', {'form': form})
     elif request.method == 'POST':
         if request.user.is_authenticated:
-            return redirect('/adventure_in_close_land')
+            return redirect('/adventure')
         else:
             form = SignUpFrom(request.POST)
             if form.is_valid():
@@ -514,7 +514,7 @@ def signup_page(request):
                 if user:
                     user.save()
                     auth_login(request, user)
-                    return redirect('/adventure_in_close_land/')
+                    return redirect('/adventure/')
                 else:
                     return HttpResponse('no user error!')
             else:

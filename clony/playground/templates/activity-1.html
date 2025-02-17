@@ -68,10 +68,10 @@
         }
         #check-button{
             display: block;
-            width: 40%;
+            width: fit-content;
             margin: auto;
             text-align: center;
-            padding: 6px 0px 6px 0px;
+            padding: 4px 10px 4px 10px;
             font-family: Vazirmatn;
             background-color: #f4ca20;
             border: 2px solid black;
@@ -82,10 +82,10 @@
         }
         #reverse{
             display: block;
-            width: 40%;
+            width: fit-content;
             margin: auto;
             text-align: center;
-            padding: 6px 0px 6px 0px;
+            padding: 4px 10px 4px 10px;
             font-family: Vazirmatn;
             background-color: #e8e8e8;
             border: 2px solid black;
@@ -96,7 +96,7 @@
         }
         #reverse a{
             display: block;
-            width: 100%;
+            /* width: 100%; */
             text-decoration: none;
             color: black;
         }
@@ -239,7 +239,7 @@
                         if (data.message === 'negative'){
                             let btn = document.getElementById('check-button')
                             btn.style.backgroundColor = '#cd0000'
-                            btn.textContent = 'تلاش مجدد'
+                            btn.textContent = 'دوباره بررسی کن'
                             btn.style.color = 'white'
                         }
                     },

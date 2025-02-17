@@ -40,6 +40,7 @@ class SignUpFrom(UserCreationForm):
         user = super(UserCreationForm, self).save(commit)
         user.save()
         student = Student(user=user)
+        student.save()
 
         return user
 
