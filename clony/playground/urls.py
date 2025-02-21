@@ -3,9 +3,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # path("ins/", views.t),
-    # path("req/", views.create_problem),
-    # path("task_bank/", views.problem_bank),
+    path("ins/", views.t),
+    path("req/", views.create_problem),
+    path("task_bank/", views.problem_bank),
     # path("filter_tasks/", views.filter_tasks),
     # path("cs_classes/", views.cs_classes),
     # path("submit_problem_answer/", views.submit_problem_answer),
