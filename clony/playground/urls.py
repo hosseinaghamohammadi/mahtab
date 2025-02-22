@@ -21,6 +21,7 @@ urlpatterns = [
     path("login/", views.login_page, name="login"),
     path("signup/", views.signup_page, name="signup"),
     path("logout/", views.logout_receiver),
+    path("my_projects", views.my_projects),
     # path("small_dimensions/", views.small_dimensions),
     path("", views.empty_redirect),
 ]

@@ -210,12 +210,14 @@
         #my-projects{
             width: 100%;
             background-color: inherit;
+            margin: auto;
         }
         #my-projects-wrap{
             width: 70%;
+            margin: auto;
             background-color: #eeeeee;
             border-radius: 10px;
-            box-shadow: -10px 10px 10px #000000;
+            box-shadow: -10px 10px 10px #0000005f;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -223,25 +225,67 @@
         #projects-list{
             width: 95%;
             margin: auto;
+            padding: 0px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .project-item-section{
             width: 100%;
+            margin: auto;
             background-color: #cccccc;
             border-radius: 5px;
             margin-top: 10px;
             margin-bottom: 10px;
             display: flex;
-            flex-direction: row;
+            flex-direction: row-reverse;
         }
         .project-item{
             width: 90%;
-            border-right: 1px solid black;
+            /* border-left: 1px solid black; */
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
         .project-item-wrap{
+            
             width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .project-item span{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: auto;
+            color: black;
+            font-weight: 400;
+            font-size: 16px;
+        }
+        .project-item span a{
+            width: 100%;
+            height: 70%;
+            background-color: #e0e0e0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: auto;
+            color: black;
+            font-weight: 400;
+            font-size: 16px;
+        }
+        .project-item span p{
+            width: 90%;
+            margin: 0;
+            margin: auto;
+            height: 30px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
         .edit-project-item{
             width: 10%;
@@ -317,9 +361,14 @@
                             <li class="project-item-section">
                                 <div class="project-item">
                                     <div class="project-item-wrap">
-                                        <a href="https://www.google.com">
-                                            <input type="text" disabled value="این اولین پروژه‌ی من هستش.">
-                                        </a>
+                                        <span>
+                                            <a href="https://www.google.com">
+                                                <!-- <input type="text" disabled value="این اولین پروژه‌ی من هستش." dir="rtl"> -->
+                                                <p dir="rtl">
+                                                    اولین پروژه‌ی من.
+                                                </p>
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="edit-project-item">

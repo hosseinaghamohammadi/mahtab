@@ -536,3 +536,7 @@ def empty_redirect(request):
 
 def small_dimensions(request):
     return render(request, 'small-dimensions.html')
+
+
+def my_projects(request):
+    return render(request, 'my-projects.html')
