@@ -14,6 +14,7 @@ from .models import (
     InteractiveActivity,
     StationProblem,
     StationInteractiveActivity,
+    Project,
 )
 # Register your models here.
 
@@ -55,4 +56,5 @@ admin.site.register(StationBasedEvent)
 admin.site.register(Problem)
 # admin.site.register(ProblemSelection)
 admin.site.register(ProblemAttempt)
+admin.site.register(Project)
 

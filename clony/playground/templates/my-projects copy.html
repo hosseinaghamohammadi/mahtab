@@ -279,7 +279,6 @@
             font-weight: 400;
             font-size: 16px;
             border-radius: 5px;
-            cursor: pointer;
         }
         .project-item span p{
             width: 90%;
@@ -309,163 +308,6 @@
             margin: auto;
             border-radius: 5px;
         }
-        .edit-project-item-wrap span a{
-            display: block;
-            width: fit-content;
-            height: fit-content;
-        }
-        #add-project-unique-section{
-            background-color: #404040;
-            color: white;
-        }
-
-        #modal{
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        #modal-content{
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            border-radius: 5px;
-        }
-
-        #modal-close-row{
-            width: 100%;
-            display: flex;
-            height: fit-content;
-            flex-direction: row-reverse;
-        }
-
-        #modal-close{
-            color: #999;
-            display: flex;
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 25px;
-            width: 30px;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border-radius: 2px;
-            background-color: #eeeeee;
-        }
-
-        #modal-close:hover, #model-close:focus{
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        #modal-body{
-            display: flex;
-        }
-
-        form{
-            display: flex;
-            flex-direction: column;
-            margin: auto;
-            width: 80%;
-            background-color: #e0e0e0;
-            padding: 0px 1% 2% 1%;
-            border-radius: 10px;
-        }
-
-        form label{
-            text-align: right;
-            margin-top: 20px;
-        }
-
-        form input{
-            width: 90%;
-            height: 25px;
-            margin: auto;
-            margin-top: 3px;
-        }
-
-        form button{
-            font-family: Vazirmatn;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 30px;
-            background-color: #404040;
-            color: white;
-            border: 2px solid black;
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 20px;
-            border-radius: 4px;
-        }
-
-        #edit-modal{
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        #edit-modal-content{
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            border-radius: 5px;
-        }
-
-        #edit-modal-close-row{
-            width: 100%;
-            display: flex;
-            height: fit-content;
-            flex-direction: row-reverse;
-        }
-
-        #edit-modal-close{
-            color: #999;
-            display: flex;
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 25px;
-            width: 30px;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border-radius: 2px;
-            background-color: #eeeeee;
-        }
-
-        #edit-modal-close:hover, #edit-model-close:focus{
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        #edit-modal-body{
-            display: flex;
-        }
-
 
     </style>
 </head>
@@ -533,53 +375,75 @@
                 <div id="my-projects">
                     <div id="my-projects-wrap">
                         <ul id="projects-list">
-                            
+                            <li class="project-item-section">
+                                <div class="project-item">
+                                    <div class="project-item-wrap">
+                                        <span>
+                                            <a href="https://www.google.com">
+                                                <p dir="rtl">
+                                                    اولین پروژه‌ی من.
+                                                </p>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="edit-project-item">
+                                    <div class="edit-project-item-wrap">
+                                        <span>
+                                            <a href="#">
+                                                <img src="{% static '/images/edit.png' %}" style="width: 100%">
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="project-item-section">
+                                <div class="project-item">
+                                    <div class="project-item-wrap">
+                                        <span>
+                                            <a href="https://www.google.com">
+                                                <!-- <input type="text" disabled value="این اولین پروژه‌ی من هستش." dir="rtl"> -->
+                                                <p dir="rtl">
+                                                    اولین پروژه‌ی من.
+                                                </p>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="edit-project-item">
+                                    <div class="edit-project-item-wrap">
+                                        <span>
+                                            <a href="#">
+                                                <img src="{% static '/images/edit.png' %}" style="width: 100%">
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="project-item-section">
+                                <div class="project-item">
+                                    <div class="project-item-wrap">
+                                        <span>
+                                            <a href="https://www.google.com">
+                                                <!-- <input type="text" disabled value="این اولین پروژه‌ی من هستش." dir="rtl"> -->
+                                                <p dir="rtl">
+                                                    اولین پروژه‌ی من.
+                                                </p>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="edit-project-item">
+                                    <div class="edit-project-item-wrap">
+                                        <span>
+                                            <a href="#">
+                                                <img src="{% static '/images/edit.png' %}" style="width: 100%">
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
-                    </div>
-                </div>
-                <div id="modal">
-                    <div id="modal-wrap">
-                        <div id="modal-content">
-                            <span id="modal-close-row">
-                                <span id="modal-close" onclick="closeModal()">&times;</span>
-                            </span>
-                            <div id="modal-body">
-                                <form id="add-project-form" method="post" dir="rtl">
-                                    <!-- {{form}} -->
-                                    {% csrf_token %}
-                                    {% for field in form %}
-                                        {{field.label_tag}}
-                                        {{field}}
-                                        {% for error in field.errors %}
-                                            <p style="color: red;">{{ error }}</p>
-                                        {% endfor %}
-                                    {% endfor %}
-                                    <button id="submit-btn" type="submit">اضافه کن!</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="edit-modal">
-                    <div id="edit-modal-wrap">
-                        <div id="edit-modal-content">
-                            <span id="edit-modal-close-row">
-                                <span id="edit-modal-close" onclick="closeEditModal()">&times;</span>
-                            </span>
-                            <div id="edit-modal-body">
-                                <form id="edit-project-form" method="post" dir="rtl" action="/api/edit_project">
-                                    {% csrf_token %}
-                                    {% for field in edit_form %}
-                                        {{field.label_tag}}
-                                        {{field}}
-                                        {% for error in field.errors %}
-                                            <p style="color: red;">{{ error }}</p>
-                                        {% endfor %}
-                                    {% endfor %}
-                                    <button id="edit-submit-btn" type="submit">ثبت کن!</button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -587,7 +451,6 @@
     </div>
 </div>
 <script>
-
 
     function getCSRFToken() {
         let cookieValue = null
@@ -604,109 +467,6 @@
             }
         }
     }
-    
-    function openModal(){
-        let modal = document.getElementById('modal')
-        modal.style.display = 'block'
-    }
-
-    function openEditModal(project_id){
-        let modal = document.getElementById('edit-modal')
-        modal.style.display = 'block'
-
-        let form = document.getElementById('edit-project-form')
-        form.classList.add(`project-id-${project_id}`)
-        form.setAttribute('action', `https://mahtab.org/api/edit_project/`)
-    }
-
-    function closeModal(){
-        let modal = document.getElementById('modal')
-        modal.style.display = 'none'
-    }
-
-    function closeEditModal(){
-        let modal = document.getElementById('edit-modal')
-        modal.style.display = 'none'
-    }
-
-    function addNewProject(newProject){
-        let projectsList = document.getElementById('projects-list')
-        let projectItemSection = document.createElement('li')
-        projectItemSection.className = 'project-item-section'
-        let projectItem = document.createElement('div')
-        projectItem.className = 'project-item'
-        let projectItemWrap = document.createElement('div')
-        projectItemWrap.className = 'project-item-wrap'
-        let projectItemSpan = document.createElement('span')
-        let projectItemLink = document.createElement('a')
-        let projectItemP = document.createElement('p')
-        projectItemP.innerText = newProject['name']
-        projectItemP.setAttribute('dir', 'rtl')
-        projectItemLink.appendChild(projectItemP)
-        projectItemSpan.appendChild(projectItemLink)
-        projectItemWrap.appendChild(projectItemSpan)
-        projectItem.appendChild(projectItemWrap)
-        projectItemSection.appendChild(projectItem)
-
-        let editProjectItem = document.createElement('div')
-        editProjectItem.className = 'edit-project-item'
-        let editProjectItemWrap = document.createElement('div')
-        editProjectItemWrap.className = 'edit-project-item-wrap'
-        let editProjectItemSpan = document.createElement('span')
-        let editProjectLink = document.createElement('a')
-        let editProjectImg = document.createElement('img')
-        editProjectImg.src = "{% static '/images/edit.png' %}"
-        editProjectImg.style.width = '100%'
-        editProjectLink.appendChild(editProjectImg)
-        editProjectItemSpan.appendChild(editProjectLink)
-        editProjectItemWrap.appendChild(editProjectItemSpan)
-        editProjectItem.appendChild(editProjectItemWrap)
-        projectItemSection.appendChild(editProjectItem)
-
-        projectsList.insertBefore(projectItemSection, projectsList.lastChild);
-    }
-
-    function addAddProjectItem(){
-        let projectsList = document.getElementById('projects-list')
-        let projectItemSection = document.createElement('li')
-        projectItemSection.className = 'project-item-section'
-        let projectItem = document.createElement('div')
-        projectItem.className = 'project-item'
-        let projectItemWrap = document.createElement('div')
-        projectItemWrap.className = 'project-item-wrap'
-        let projectItemSpan = document.createElement('span')
-        let projectItemLink = document.createElement('a')
-        let projectItemP = document.createElement('p')
-        projectItemP.innerText = 'اضافه کردن پروژه‌ی جدید'
-        projectItemP.setAttribute('dir', 'rtl')
-        projectItemLink.appendChild(projectItemP)
-        projectItemLink.setAttribute('id', 'add-project-unique-section')
-        projectItemSpan.appendChild(projectItemLink)
-        projectItemWrap.appendChild(projectItemSpan)
-        projectItem.appendChild(projectItemWrap)
-        projectItemSection.appendChild(projectItem)
-
-        let editProjectItem = document.createElement('div')
-        editProjectItem.className = 'edit-project-item'
-        let editProjectItemWrap = document.createElement('div')
-        editProjectItemWrap.className = 'edit-project-item-wrap'
-        let editProjectItemSpan = document.createElement('span')
-        let editProjectLink = document.createElement('a')
-        let editProjectImg = document.createElement('img')
-        editProjectImg.src = "{% static '/images/edit.png' %}"
-        editProjectImg.style.width = '100%'
-        editProjectImg.style.display = 'none'
-        editProjectLink.appendChild(editProjectImg)
-        editProjectLink.setAttribute('id', 'add-project-unique-section')
-        editProjectItemSpan.appendChild(editProjectLink)
-        editProjectItemWrap.appendChild(editProjectItemSpan)
-        editProjectItemWrap.style.backgroundColor = 'inherit'
-        editProjectItem.appendChild(editProjectItemWrap)
-        projectItemSection.appendChild(editProjectItem)
-        projectItemSection.setAttribute('onclick', 'openModal()')
-
-        projectsList.appendChild(projectItemSection)
-    }
 
     function addProjects(userProjectList){
         let projectsList = document.getElementById('projects-list')
@@ -722,7 +482,6 @@
             let projectItemLink = document.createElement('a')
             let projectItemP = document.createElement('p')
             projectItemP.innerText = userProjectList[i]['name']
-            projectItemP.setAttribute('dir', 'rtl')
             projectItemLink.appendChild(projectItemP)
             projectItemSpan.appendChild(projectItemLink)
             projectItemWrap.appendChild(projectItemSpan)
@@ -739,17 +498,13 @@
             editProjectImg.src = "{% static '/images/edit.png' %}"
             editProjectImg.style.width = '100%'
             editProjectLink.appendChild(editProjectImg)
-            editProjectLink.setAttribute('onclick', `openEditModal(${userProjectList[i]['id']})`)
             editProjectItemSpan.appendChild(editProjectLink)
             editProjectItemWrap.appendChild(editProjectItemSpan)
             editProjectItem.appendChild(editProjectItemWrap)
             projectItemSection.appendChild(editProjectItem)
 
-            projectItemSection.classList.add(`project-id-${userProjectList[i]['id']}`)
-
             projectsList.appendChild(projectItemSection)
         }
-        addAddProjectItem()
     }
 
     function retrieve_data() {
@@ -768,82 +523,6 @@
     }
 
     retrieve_data()
-
-    addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('add-project-form');
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const csrftoken = getCSRFToken();
-            const formData = new FormData(form);
-            const formDataObject = Object.fromEntries(formData.entries())
-            console.log(formDataObject)
-            // console.log(formData['entries']()(), formData['link'])
-            $.ajax({
-                url: form.action,
-                type: 'POST',
-                headers: {
-                    'X-CSRFToken': csrftoken
-                },
-                data: formDataObject,
-                // processData: false,
-                // contentType: false,
-                success: function(data, status) {
-                    // Handle success response
-                    console.log(data);
-                    closeModal();
-                    if (data['message'] === 'positive'){
-                        alert('پروژه با موفقیت اضافه شد.');
-                        addNewProject(data['new_project']); // Refresh the project list
-                    } else {
-                        alert('پروژه اضافه نشد. دوباره تلاش کنید.');
-                    }
-                },
-                error: function(error) {
-                    // Handle error response
-                    console.error('Form submission failed:', error);
-                    alert('خطایی رخ داد. دوباره تلاش کنید.');
-                }
-            });
-        });
-    });
-
-    addEventListener('DOMContentLoaded', function(){
-        const form = document.getElementById('edit-project-form')
-        // let project_id = form.classList[0].split('-')[2]
-        form.addEventListener('submit', function(event){
-            event.preventDefault();
-            const csrftoken = getCSRFToken();
-            const formData = new FormData(form);
-            let formDataObject = Object.fromEntries(formData.entries())
-            formDataObject['id'] = form.classList[0].split('-')[2]
-            const body = formDataObject
-            console.log(formDataObject)
-            $.ajax({
-                url: form.action,
-                type: 'POST',
-                headers: {
-                    'X-CSRFToken': csrftoken
-                },
-                data: body,
-                success: function(data, status){
-                    console.log(data);
-                    closeEditModal();
-                    if (data['message'] === 'positive'){
-                        alert('پروژه با موفقیت ویرایش شد.');
-                        // addNewProject(data['new_project']); // Refresh the project list
-                    } else {
-                        alert('پروژه ویرایش نشد. دوباره تلاش کنید.');
-                    }
-                },
-                error: function(error){
-                    console.error('Form submission failed:', error);
-                    alert('خطایی رخ داد. دوباره تلاش کنید.');
-                }
-            });
-        });
-    })
-
 </script>
 <audio loop id="123">
     <source src="{% static '/audios/homepage-audio.mp3' %}" type="audio/mpeg"/>

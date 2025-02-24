@@ -17,9 +17,10 @@ from .models import (Student,
                      StationProblem,
                      StationInteractiveActivity,
                      EventAttempt,
+                     Project,
                      )
-from .serializers import StationSerializer
-from .forms import UserCreationForm, SignUpFrom, LogInForm
+from .serializers import StationSerializer, ProjectSerializer
+from .forms import UserCreationForm, SignUpFrom, LogInForm, addProjectForm, EditProjectForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -41,6 +42,7 @@ filter_mapping_db_to_template = {
     '10': 'دهم',
     '11': 'یازدهم',
     '12': 'دوازدهم',
+    
 }
 filter_mapping_template_to_db = {
     'جاافتاده': 'hard',
@@ -538,5 +540,85 @@ def small_dimensions(request):
     return render(request, 'small-dimensions.html')
 
 
+@login_required
 def my_projects(request):
-    return render(request, 'my-projects.html')
+    if request.method == 'GET':
+        form = addProjectForm()
+        edit_form = EditProjectForm()
+        return render(request, 'my-projects.html', {'form': form, 'edit_form': edit_form})
+    elif request.method == 'POST':
+        form = addProjectForm(request.POST)
+        if form.is_valid():
+
+            p_name = ''
+            if form.cleaned_data['name'] == '':
+                p_name = form.cleaned_data['link']
+            else:
+                p_name = form.cleaned_data['name']
+
+            project = Project(
+                name=p_name,
+                link=form.cleaned_data['link'],
+                student=request.user.student
+            )
+            project.save()
+            project_serialized = ProjectSerializer(project).data
+            return JsonResponse({
+                'status': 'success',
+                'message': 'positive',
+                'new_project': project_serialized
+            })
+        else:
+            return HttpResponse('invalid form')
+
+
+@login_required
+def my_projects_api(request):
+    print('mistake 2', request.method)
+    if request.method == 'GET':
+        user = request.user
+        # print(user)
+        user_projects = Project.objects.filter(student=user.student)
+        # print(user_projects)
+        user_projects_list = []
+        for p in user_projects:
+            user_projects_list.append(ProjectSerializer(p).data)
+        
+        print(user_projects_list)
+        return JsonResponse({
+            'user_projects_list': user_projects_list
+        })
+
+
+@login_required
+def edit_project_api(request):
+    if request.method == 'POST':
+
+        project_id = int(request.POST['id'])
+        
+        p_name = request.POST['link'] if request.POST['name'] == '' else request.POST['name']
+
+        new_project_name = p_name
+        new_project_link = request.POST['link']
+        new_project_is_public = True if new_project_is_public == 'true' else False
+
+        project = Project.objects.get(id=project_id)
+        if project:
+            project.name = new_project_name
+            project.link = new_project_link
+            project.is_public = new_project_is_public
+            project.save()
+            return JsonResponse({
+                'status': 'success',
+                'message': 'positive'
+            })
+        else:
+            return JsonResponse({
+                'status': 'error',
+                'message': 'project not found'
+            })
+    else:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'invalid request'
+        })

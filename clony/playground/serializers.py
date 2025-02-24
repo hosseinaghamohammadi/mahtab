@@ -1,6 +1,18 @@
 # serializers.py
 from rest_framework import serializers
-from .models import Station, Problem, StationProblem, InteractiveActivity, StationInteractiveActivity
+from .models import (Station,
+                     Problem,
+                     StationProblem,
+                     InteractiveActivity,
+                     StationInteractiveActivity,
+                     Project,
+                     )
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all__'
 
 
 class ProblemSerializer(serializers.ModelSerializer):

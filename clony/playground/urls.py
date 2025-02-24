@@ -13,15 +13,20 @@ urlpatterns = [
     path("homepage/", views.public_homepage, name="home"),
     path("adventure/", views.event_homepage),
     path("api/journey-details/", views.journey_details),
+
+    path("my_projects/", views.my_projects),
+    path("api/my_projects/", views.my_projects_api),
+    path("api/edit_project/", views.edit_project_api),
+
     path("journey/", views.journey_page),
     path("adventure/problem/<int:problem_index>/", views.problem_page),
     path("adventure/activity/<int:activity_index>/", views.activity_page),
-    path("submit_event_problem_answer", views.submit_event_problem_answer),
-    path("submit_event_activity_answer", views.submit_event_activity_answer),
+    path("submit_event_problem_answer/", views.submit_event_problem_answer),
+    path("submit_event_activity_answer/", views.submit_event_activity_answer),
     path("login/", views.login_page, name="login"),
     path("signup/", views.signup_page, name="signup"),
     path("logout/", views.logout_receiver),
-    path("my_projects", views.my_projects),
+    
     # path("small_dimensions/", views.small_dimensions),
     path("", views.empty_redirect),
 ]

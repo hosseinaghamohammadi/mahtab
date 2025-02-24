@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import get_user_model
 from django import forms
-from .models import Student
+from .models import Student, Project
 
 
 class SignUpFrom(UserCreationForm):
@@ -62,3 +62,38 @@ class LogInForm(AuthenticationForm):
         super(AuthenticationForm, self).__init__(*args, **kwargs)
         self.fields['username'].label = 'شماره‌ی تلفن همراه'
         self.fields['username'].widget.attrs = {'dir': 'ltr'}
+
+
+class addProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['name', 'link', 'is_private']
+
+    def __init__(self, *args, **kwargs):
+        super(addProjectForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = 'نام پروژه'
+        self.fields['name'].widget.attrs = {'dir': 'rtl'}
+        self.fields['name'].required = False
+        self.fields['link'].label = 'لینک پروژه'
+        self.fields['link'].widget.attrs = {'dir': 'rtl'}
+        self.fields['link'].required = True
+        self.fields['is_private'].label = 'اگر تیک زیر فعال باشد، فقط شما می‌توانید این پروژه را ببینید.'
+        self.fields['is_private'].widget.attrs = {'dir': 'rtl'}
+        self.fields['is_private'].required = False
+
+class EditProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['name', 'link', 'is_private']
+
+    def __init__(self, *args, **kwargs):
+        super(EditProjectForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = 'نام پروژه'
+        self.fields['name'].widget.attrs = {'dir': 'rtl'}
+        self.fields['name'].required = False
+        self.fields['link'].label = 'لینک پروژه'
+        self.fields['link'].widget.attrs = {'dir': 'rtl'}
+        self.fields['link'].required = True
+        self.fields['is_private'].label = 'اگر تیک زیر فعال باشد، فقط شما می‌توانید این پروژه را ببینید.'
+        self.fields['is_private'].widget.attrs = {'dir': 'rtl'}
+        self.fields['is_private'].required = False
