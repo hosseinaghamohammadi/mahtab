@@ -643,6 +643,9 @@
         projectItemP.innerText = newProject['name']
         projectItemP.setAttribute('dir', 'rtl')
         projectItemLink.appendChild(projectItemP)
+        projectItemLink.setAttribute('href', newProject['link'])
+        projectItemLink.setAttribute('target', '_blank')
+        projectItemLink.style.cursor = 'pointer'
         projectItemSpan.appendChild(projectItemLink)
         projectItemWrap.appendChild(projectItemSpan)
         projectItem.appendChild(projectItemWrap)
@@ -658,10 +661,13 @@
         editProjectImg.src = "{% static '/images/edit.png' %}"
         editProjectImg.style.width = '100%'
         editProjectLink.appendChild(editProjectImg)
+        editProjectLink.setAttribute('onclick', `openEditModal(${newProject['id']})`)
         editProjectItemSpan.appendChild(editProjectLink)
         editProjectItemWrap.appendChild(editProjectItemSpan)
         editProjectItem.appendChild(editProjectItemWrap)
         projectItemSection.appendChild(editProjectItem)
+
+        projectItemSection.classList.add(`project-id-${newProject['id']}`)
 
         projectsList.insertBefore(projectItemSection, projectsList.lastChild);
     }
@@ -724,6 +730,9 @@
             projectItemP.innerText = userProjectList[i]['name']
             projectItemP.setAttribute('dir', 'rtl')
             projectItemLink.appendChild(projectItemP)
+            projectItemLink.setAttribute('href', userProjectList[i]['link'])
+            projectItemLink.setAttribute('target', '_blank')
+            projectItemLink.style.cursor = 'pointer'
             projectItemSpan.appendChild(projectItemLink)
             projectItemWrap.appendChild(projectItemSpan)
             projectItem.appendChild(projectItemWrap)
@@ -750,6 +759,16 @@
             projectsList.appendChild(projectItemSection)
         }
         addAddProjectItem()
+    }
+
+    function changeProject(project_id, project_new_name, project_new_link){
+        let projectItemSection = document.getElementsByClassName(`project-id-${project_id}`)[0]
+        let projectItemP = projectItemSection.getElementsByTagName('p')[0]
+        projectItemP.textContent = project_new_name
+        let projectItemLink = projectItemSection.getElementsByTagName('a')[0]
+        projectItemLink.setAttribute('href', project_new_link)
+        projectItemLink.setAttribute('target', '_blank')
+        projectItemLink.style.cursor = 'pointer'
     }
 
     function retrieve_data() {
@@ -831,7 +850,7 @@
                     closeEditModal();
                     if (data['message'] === 'positive'){
                         alert('پروژه با موفقیت ویرایش شد.');
-                        // addNewProject(data['new_project']); // Refresh the project list
+                        changeProject(formDataObject['id'], formDataObject['name'], formDataObject['link'])
                     } else {
                         alert('پروژه ویرایش نشد. دوباره تلاش کنید.');
                     }
