@@ -574,7 +574,7 @@ def my_projects(request):
 
 @login_required
 def my_projects_api(request):
-    print('mistake 2', request.method)
+    
     if request.method == 'GET':
         user = request.user
         # print(user)
@@ -584,7 +584,6 @@ def my_projects_api(request):
         for p in user_projects:
             user_projects_list.append(ProjectSerializer(p).data)
         
-        print(user_projects_list)
         return JsonResponse({
             'user_projects_list': user_projects_list
         })
@@ -592,21 +591,28 @@ def my_projects_api(request):
 
 @login_required
 def edit_project_api(request):
+    print('here')
     if request.method == 'POST':
-
+        print('here 2')
         project_id = int(request.POST['id'])
-        
+        print('here 3')
         p_name = request.POST['link'] if request.POST['name'] == '' else request.POST['name']
-
+        print('here 4')
         new_project_name = p_name
+        print('here 6')
         new_project_link = request.POST['link']
-        new_project_is_public = True if new_project_is_public == 'true' else False
-
+        print('here 7')
+        new_project_is_private = True if 'is_private' in request.POST.keys() else False
+        print('here 5')
         project = Project.objects.get(id=project_id)
+
+        print('here is fine')
         if project:
+            print('here is fine 2')
             project.name = new_project_name
             project.link = new_project_link
-            project.is_public = new_project_is_public
+            project.is_private = new_project_is_private
+            print('here is fine 3')
             project.save()
             return JsonResponse({
                 'status': 'success',

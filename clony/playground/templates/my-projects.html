@@ -837,7 +837,7 @@
             let formDataObject = Object.fromEntries(formData.entries())
             formDataObject['id'] = form.classList[0].split('-')[2]
             const body = formDataObject
-            console.log(formDataObject)
+            console.log(body)
             $.ajax({
                 url: form.action,
                 type: 'POST',
