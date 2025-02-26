@@ -434,7 +434,7 @@ def activity_page(request, activity_index):
         station_activities = StationInteractiveActivity.objects.filter(station=current_station).order_by('order')
         activity = InteractiveActivity.objects.get(id=station_activities[activity_index].activity.id)
         print(activity)
-    return render(request, f'{activity.html_file_name}.html', {'activity': activity})
+        return render(request, f'{activity.html_file_name}.html', {'activity': activity})
 
 
 # API for the journey page
